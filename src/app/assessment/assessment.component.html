@@ -1,0 +1,63 @@
+
+<div class="geracao-provas">
+  <h2>Gerar Prova</h2>
+
+  <!-- Campo de Busca -->
+  <div class="busca">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Buscar Questões"
+        [(ngModel)]="termoBusca"
+        (keyup)="filtrarQuestoes()"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- Filtro por Disciplina -->
+  <div class="disciplinas">
+    <mat-form-field>
+      <mat-label>Filtrar por Disciplina</mat-label>
+      <mat-select
+        [(ngModel)]="disciplinaSelecionada"
+        (change)="filtrarQuestoes()"
+      >
+        <mat-option [value]="">Todas as Disciplinas</mat-option>
+        <mat-option
+          *ngFor="let disciplina of disciplinas"
+          [value]="disciplina"
+          >{{ disciplina }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Lista de Questões Disponíveis -->
+  <div class="questoes-disponiveis">
+    <h3>Questões Disponíveis</h3>
+    <ul>
+      <li *ngFor="let questao of questoesFiltradas">
+        {{ questao.pergunta }} (Disciplina: {{ questao.disciplina }})
+        <button mat-icon-button (click)="adicionarQuestaoAProva(questao)">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Prova Gerada -->
+  <div class="prova-gerada">
+    <h3>Prova Gerada</h3>
+    <ul>
+      <li *ngFor="let questao of prova; let i = index">
+        {{ questao.pergunta }} (Disciplina: {{ questao.disciplina }})
+        <button mat-icon-button (click)="removerQuestaoDaProva(i)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Botão para Gerar Prova -->
+  <button mat-raised-button color="primary">Gerar Prova</button>
+</div>

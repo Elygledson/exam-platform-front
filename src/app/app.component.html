@@ -1,0 +1,93 @@
+<mat-toolbar class="header">
+  <mat-toolbar-row>
+    <span class="logo-text">ProvaGenius</span>
+    <span class="example-spacer"></span>
+    <div class="buttons">
+      <button mat-raised-button>Cadastro</button>
+      <button mat-raised-button>Login</button>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row> </mat-toolbar-row>
+</mat-toolbar>
+<div class="filter-container"></div>
+<div class="container">
+  <div class="sidebar">
+    <h4 style="text-align: center">Disciplinas</h4>
+    <mat-selection-list #course [multiple]="false">
+      <mat-list-option
+        *ngFor="let course of courses"
+        [value]="course"
+        color="primary"
+      >
+        {{ course }}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="content">
+    <h1>
+      {{
+        course.selectedOptions.hasValue()
+          ? course.selectedOptions.selected[0].value
+          : "Matemática"
+      }}
+    </h1>
+    <div style="margin-bottom: 15px" *ngFor="let question of questions">
+      <mat-card class="card-item">
+        <mat-card-actions class="card-actions">
+          <mat-chip-listbox aria-label="select question">
+            <mat-chip-option (click)="selectQuestion(question)"
+              >selecionar</mat-chip-option
+            >
+          </mat-chip-listbox>
+        </mat-card-actions>
+        <mat-card-header class="card-header">
+          <mat-card-title class="card-title">
+            Questão {{ question.id }}
+            <button
+              mat-stroked-button
+              [ngClass]="getDifficultyColor(question.difficulty)"
+            >
+              {{ question.difficulty }}
+            </button>
+          </mat-card-title>
+          <p>{{ question.score }}/10</p>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          <div class="question-text">
+            <p>{{ question.text }}</p>
+          </div>
+          <div class="options">
+            <p><strong>Opções:</strong></p>
+            <div *ngFor="let option of question.options">
+              <input type="checkbox" [value]="option" />
+              {{ option }}
+            </div>
+          </div>
+          <!-- <div class="details">
+            <p><strong>Categoria:</strong> {{ question.category }}</p>
+            <p><strong>Autor:</strong> {{ question.author.name }}</p>
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Resposta Correta</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{ question.correctAnswer }}
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <button
+    mat-raised-button
+    color="primary"
+    class="generate-assessment"
+    *ngIf="isQuestionSelected"
+  >
+    Gerar Prova
+  </button>
+</div>
