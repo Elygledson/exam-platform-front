@@ -5,21 +5,12 @@ import {
   provideRouter,
   withComponentInputBinding,
 } from '@angular/router';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { AssessmentComponent } from './assessment/assessment.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
-    children: [
-      { path: 'tilapia', component: AssessmentComponent },
-      {
-        path: '',
-        redirectTo: 'tilapia',
-        pathMatch: 'full',
-      },
-    ],
+    component: AppComponent,
   },
 ];
 

@@ -56,7 +56,6 @@ mat-toolbar-row {
 }
 
 /* Cards de questões */
-/*  */
 
 .card-item {
   margin-bottom: 20px; /* Espaço entre os cards */
@@ -90,4 +89,15 @@ mat-toolbar-row {
   right: 20px;
   z-index: 1000;
   background-color: #003b95;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
 }
