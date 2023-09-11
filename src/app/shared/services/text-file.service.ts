@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question } from 'src/app/app.component';
+import { Question } from 'src/app/exam/exam.component';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export class TextFileService {
 
       if (question.options) {
         text += 'Opções:\n';
-        question.options.forEach((option, optionIndex) => {
+        question.options.forEach((option: string, optionIndex: number) => {
           text += `${String.fromCharCode(97 + optionIndex)}. ${option}\n`;
         });
       }

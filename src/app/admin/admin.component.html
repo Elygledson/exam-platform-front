@@ -1,0 +1,99 @@
+<mat-toolbar class="header">
+  <mat-toolbar-row>
+    <span class="logo-text">Gerenciador de Provas</span>
+
+    <span class="example-spacer"></span>
+    <div class="buttons">
+      <button mat-raised-button>Cadastro</button>
+      <button mat-raised-button>Login</button>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row> </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="exams-container">
+  <div class="tools">
+    <mat-card class="new-exame" (click)="navigateToCreateExam()">
+      <mat-icon class="new-exame-icon">list_alt </mat-icon>
+      <mat-card-title>Criar Nova Prova</mat-card-title>
+    </mat-card>
+    <mat-card class="new-exame">
+      <mat-icon class="new-exame-icon">list_alt </mat-icon>
+      <mat-card-title>Criar Questão</mat-card-title>
+    </mat-card>
+  </div>
+
+  <div class="kanban" cdkDropListGroup>
+    <div class="kanban-column">
+      <h2>Por fazer</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="examsToDo"
+        class="kanban-cards"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <mat-card class="kanban-card" *ngFor="let exam of examsToDo" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{ exam.name }}</mat-card-title>
+            <mat-card-subtitle>{{ exam.author }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Data de Criação: {{ exam.createdAt | date : "mediumDate" }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <h2>Em Progresso</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="examsInProgress"
+        class="kanban-cards"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <mat-card
+          class="kanban-card"
+          *ngFor="let exam of examsInProgress"
+          cdkDrag
+        >
+          <mat-card-header>
+            <mat-card-title>{{ exam.name }}</mat-card-title>
+            <mat-card-subtitle>{{ exam.author }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Data de Criação: {{ exam.createdAt | date : "mediumDate" }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <h2>Concluído</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="concludedExams"
+        class="kanban-cards"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <mat-card
+          class="kanban-card"
+          *ngFor="let exam of concludedExams"
+          cdkDrag
+        >
+          <mat-card-header>
+            <mat-card-title>{{ exam.name }}</mat-card-title>
+            <mat-card-subtitle>{{ exam.author }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Data de Criação: {{ exam.createdAt | date : "mediumDate" }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

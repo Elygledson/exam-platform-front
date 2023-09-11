@@ -5,15 +5,16 @@ import {
   provideRouter,
   withComponentInputBinding,
 } from '@angular/router';
-import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component';
+import { ExamComponent } from './exam/exam.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'create-exam', component: ExamComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
