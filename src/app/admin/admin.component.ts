@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Difficulty, Question } from '../exam/exam.component';
 import {
   CdkDragDrop,
@@ -6,7 +6,6 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
-
 export interface Exam {
   author: string;
   name: string;
@@ -20,6 +19,11 @@ export interface Exam {
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
+  examsDone: number = 10; // Exemplo: número de provas feitas
+  examsProgress: number = 15; // Exemplo: número de provas em andamento
+  totalExams: number = 30; // Exemplo: número total de provas cadastradas
+  totalQuestions: number = 300; // Exemplo: número total de questões
+
   examsToDo: Exam[] = [
     {
       author: 'Elygledson',

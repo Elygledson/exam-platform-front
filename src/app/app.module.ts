@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
     ExamComponent,
     LoginComponent,
     RegisterComponent,
+    QuestionComponent,
   ],
   imports: [
     BrowserModule,
