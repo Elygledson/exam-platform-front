@@ -51,8 +51,7 @@ mat-toolbar-row {
 
 .content {
   flex-grow: 1;
-  padding: 16px;
-  background-color: #ffffff; /* Cor de fundo do conteúdo */
+  padding: 75px;
 }
 
 /* Cards de questões */

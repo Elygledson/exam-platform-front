@@ -1,0 +1,39 @@
+<div class="exams-container">
+  <div class="filter">
+    <button
+      mat-raised-button
+      class="create-exam-button"
+      color="primary"
+      (click)="navigateToCreateExam()"
+    >
+      <mat-icon>add</mat-icon> Nova Prova
+    </button>
+    <div class="filter-input">
+      <input
+        type="text"
+        placeholder="Filtrar"
+        [(ngModel)]="filter"
+        (input)="applyFilter()"
+      />
+      <mat-icon class="search-icon">search</mat-icon>
+    </div>
+  </div>
+  <div class="exam-header">
+    <div class="column-name">Exame</div>
+    <div class="column-course">Disciplina</div>
+    <div class="column-created">Criado</div>
+  </div>
+  <div class="exam-card" *ngFor="let exam of filterExams; let i = index">
+    <div class="exam-details">
+      <div class="exam-name">{{ exam.name }}</div>
+      <div class="exam-discipline">{{ exam.questions[0].category }}</div>
+      <div class="exam-date">{{ exam.createdAt }}</div>
+      <button mat-stroked-button color="primary" (click)="editExam(i)">
+        Editar
+      </button>
+      <button mat-icon-button color="primary" (click)="removeExam(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
