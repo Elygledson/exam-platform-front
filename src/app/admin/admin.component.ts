@@ -15,11 +15,23 @@ export class AdminComponent {
     this.router.navigate(['admin']);
   }
 
+  navigateToViewExams(): void {
+    this.router.navigate(['admin']);
+  }
+
+  navigateToViewQuestions(): void {
+    this.router.navigate(['admin', 'questions']);
+  }
+
   navigateToCreateExam(): void {
     this.router.navigate(['admin', 'create-exam']);
   }
 
-  navigateToQuestions(): void {}
+  navigateToQuestions(): void {
+    this.router.navigate(['admin', 'create-question']);
+  }
 
-  logout(): void {}
+  logout(): void {
+    this.router.navigate(['login']);
+  }
 }

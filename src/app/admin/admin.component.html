@@ -193,34 +193,59 @@
     </div>
 
     <div class="sidebar-buttons">
-      <div class="user-profile">
-        <img src="../../assets/img/logo.png" alt="Foto do Perfil" />
-        <h2>Nome do Usuário</h2>
-      </div>
       <div class="buttons">
-        <div class="button" (click)="navigateToCreateExam()">
-          <button mat-icon-button>
-            <mat-icon>assignment</mat-icon>
-          </button>
-          <span class="button-label">Provas</span>
+        <div class="upper">
+          <div class="user-profile">
+            <img src="../../assets/img/logo.png" alt="Foto do Perfil" />
+            <h2>Nome do Usuário</h2>
+          </div>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <button mat-icon-button>
+                  <mat-icon>assignment</mat-icon>
+                </button>
+                <span class="button-label">Provas</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button (click)="navigateToCreateExam()">
+              Criar Prova
+            </button>
+            <button mat-button (click)="navigateToViewExams()">
+              Visualizar Provas
+            </button>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <button mat-icon-button>
+                  <mat-icon>help</mat-icon>
+                </button>
+                <span class="button-label">Questões</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button (click)="navigateToQuestions()">
+              Criar Questão
+            </button>
+            <button mat-button (click)="navigateToViewQuestions()">
+              Visualizar Questões
+            </button>
+          </mat-expansion-panel>
         </div>
-        <div class="button" (click)="navigateToQuestions()">
-          <button mat-icon-button>
-            <mat-icon>help</mat-icon>
-          </button>
-          <span class="button-label">Questões</span>
-        </div>
-        <div class="button">
-          <button mat-icon-button>
-            <mat-icon>settings</mat-icon>
-          </button>
-          <span class="button-label">Configurações</span>
-        </div>
-        <div class="button" (click)="logout()">
-          <button mat-icon-button>
-            <mat-icon>logout</mat-icon>
-          </button>
-          <span class="button-label">Sair</span>
+        <div class="bottom">
+          <div class="button">
+            <button mat-icon-button>
+              <mat-icon>settings</mat-icon>
+            </button>
+            <span class="button-label">Configurações</span>
+          </div>
+          <div class="button" (click)="logout()">
+            <button mat-icon-button>
+              <mat-icon>logout</mat-icon>
+            </button>
+            <span class="button-label">Sair</span>
+          </div>
         </div>
       </div>
     </div>

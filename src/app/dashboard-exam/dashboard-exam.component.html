@@ -6,7 +6,7 @@
       color="primary"
       (click)="navigateToCreateExam()"
     >
-      <mat-icon>add</mat-icon> Nova Prova
+      <mat-icon>add</mat-icon> Criar Prova
     </button>
     <div class="filter-input">
       <input
@@ -27,7 +27,9 @@
     <div class="exam-details">
       <div class="exam-name">{{ exam.name }}</div>
       <div class="exam-discipline">{{ exam.questions[0].category }}</div>
-      <div class="exam-date">{{ exam.createdAt }}</div>
+      <div class="exam-date">
+        {{ exam.createdAt | date : "dd/MM/yyyy" }}
+      </div>
       <button mat-stroked-button color="primary" (click)="editExam(i)">
         Editar
       </button>

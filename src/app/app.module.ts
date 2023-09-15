@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { EditExamDialogComponent } from './shared/edit-exam-dialog/edit-exam-dialog.component';
 import { DashboardExamComponent } from './dashboard-exam/dashboard-exam.component';
 import { DashboardQuestionComponent } from './dashboard-question/dashboard-question.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DashboardQuestionComponent } from './dashboard-question/dashboard-quest
     EditExamDialogComponent,
     DashboardExamComponent,
     DashboardQuestionComponent,
+    QuestionComponent,
   ],
   imports: [
     BrowserModule,

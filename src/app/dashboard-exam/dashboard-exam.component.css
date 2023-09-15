@@ -8,18 +8,6 @@ mat-toolbar-row {
   justify-content: space-between;
 }
 
-.logo-text {
-  font-size: 28px; /* Tamanho da fonte */
-  font-family: "Comic Sans MS", cursive, sans-serif; /* Escolha uma fonte descontraída */
-  color: #fff; /* Cor do texto */
-  font-weight: bold; /* Peso da fonte (negrito) */
-  text-transform: uppercase; /* Converte o texto para maiúsculas */
-  letter-spacing: 2px; /* Espaçamento entre as letras */
-  padding: 8px 15px; /* Espaçamento interno para tornar o texto arredondado */
-  border-radius: 30px; /* Raio das bordas para criar uma aparência arredondada */
-  margin-right: 20px; /* Margem à direita para separá-lo dos botões */
-}
-
 /* Exams Panel */
 
 .sidenav {

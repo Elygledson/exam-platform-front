@@ -36,6 +36,7 @@ export class ExamComponent {
   public includeAnswers: string = '';
   public includeHeaderFooter: string = '';
   public selectedStepper = 0;
+  public selectedCourse = '';
   courses = [
     'Introdução à Programação',
     'Algoritmos e Estruturas de Dados',
@@ -175,6 +176,8 @@ export class ExamComponent {
       this.selectedQuestions.splice(index, 1);
     }
   }
+
+  onCourseChange(): void {}
 
   getDifficultyColor(difficulty: string) {
     switch (difficulty) {

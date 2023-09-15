@@ -1,0 +1,98 @@
+<div class="example-action-buttons">
+  <button mat-button (click)="accordion.openAll()">Expandir tudo</button>
+  <button mat-button (click)="accordion.closeAll()">Fechar tudo</button>
+</div>
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Questão de Múltipla Escolha</mat-panel-title>
+      <mat-panel-description>
+        Insira os detalhes da questão de múltipla escolha.
+        <mat-icon>help_outline</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="multipleChoiceForm">
+      <mat-form-field>
+        <mat-label>Descrição da Questão</mat-label>
+        <input matInput formControlName="text" />
+      </mat-form-field>
+
+      <div formArrayName="options">
+        <button mat-raised-button color="primary" (click)="addOption()">
+          <mat-icon>add</mat-icon> Adicionar opção
+        </button>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div *ngFor="let optionControl of optionControls; let i = index">
+            <mat-form-field>
+              <mat-label>Opção {{ i + 1 }}</mat-label>
+              <input matInput [formControlName]="i" />
+            </mat-form-field>
+            <button mat-icon-button (click)="removeOption(i)">
+              <mat-icon color="primary">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <mat-form-field>
+          <mat-label>Resposta Correta</mat-label>
+          <input matInput formControlName="correctAnswer" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Dificuldade</mat-label>
+          <input matInput formControlName="difficulty" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <input matInput formControlName="category" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Pontuação</mat-label>
+          <input matInput formControlName="score" />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+    </form>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Questão de Verdadeiro ou Falso</mat-panel-title>
+      <mat-panel-description>
+        Insira os detalhes da questão de verdadeiro ou falso.
+        <mat-icon>help_outline</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>Texto da Questão</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Questão Aberta</mat-panel-title>
+      <mat-panel-description>
+        Insira os detalhes da questão.
+        <mat-icon>help_outline</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>Texto da Questão</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-accordion>
