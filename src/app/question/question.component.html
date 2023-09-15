@@ -75,10 +75,19 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-form-field>
-      <mat-label>Texto da Questão</mat-label>
-      <input matInput />
-    </mat-form-field>
+    <form [formGroup]="multipleChoiceForm">
+      <div style="display: flex; flex-direction: column">
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input matInput formControlName="correctAnswer" />
+        </mat-form-field>
+      </div>
+      <mat-selection-list [multiple]="false">
+        <mat-list-option color="primary"> Sim </mat-list-option>
+        <mat-list-option color="primary"> Não </mat-list-option>
+      </mat-selection-list>
+      <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+    </form>
   </mat-expansion-panel>
 
   <mat-expansion-panel>
@@ -90,9 +99,14 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-form-field>
-      <mat-label>Texto da Questão</mat-label>
-      <input matInput />
-    </mat-form-field>
+    <form [formGroup]="multipleChoiceForm">
+      <div style="display: flex; flex-direction: column">
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input matInput formControlName="correctAnswer" />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+    </form>
   </mat-expansion-panel>
 </mat-accordion>
