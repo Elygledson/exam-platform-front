@@ -1,159 +1,54 @@
-<div class="container">
-  <div class="filter">
-    <mat-form-field>
-      <mat-label>Selecione uma Disciplina</mat-label>
-      <mat-select
-        [(ngModel)]="selectedCourse"
-        (selectionChange)="onCourseChange()"
-      >
-        <mat-option *ngFor="let course of courses" [value]="course">{{
-          course
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <h1 style="margin-left: 24px">
-    {{ selectedCourse || courses[0] }}
-  </h1>
-
-  <mat-horizontal-stepper
-    [linear]="true"
-    #stepper
-    (selectionChange)="stepperSelectionChange($event)"
-  >
-    <mat-step>
-      <ng-template matStepLabel>Seleção de Questões</ng-template>
-
-      <div style="margin-bottom: 15px" *ngFor="let question of questions">
-        <mat-card class="card-item">
-          <mat-card-actions class="card-actions">
-            <mat-chip-listbox aria-label="select question">
-              <mat-chip-option (click)="selectQuestion(question)"
-                >selecionar</mat-chip-option
-              >
-            </mat-chip-listbox>
-          </mat-card-actions>
-          <mat-card-header class="card-header">
-            <mat-card-title class="card-title">
-              Questão {{ question.id }}
-              <button
-                mat-stroked-button
-                [ngClass]="getDifficultyColor(question.difficulty)"
-              >
-                {{ question.difficulty }}
-              </button>
-            </mat-card-title>
-            <p>{{ question.score }}/10</p>
-          </mat-card-header>
-          <mat-card-content class="card-content">
-            <div class="question-text">
-              <p>{{ question.text }}</p>
-            </div>
-            <div class="options">
-              <p>Marque a alternativa correta:</p>
-              <mat-radio-group
-                aria-labelledby="options"
-                class="example-radio-group"
-              >
-                <mat-radio-button
-                  color="primary"
-                  *ngFor="let option of question.options"
-                  [value]="option"
-                  >{{ option }}</mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>Resposta Correta</mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-panel-description>
-            {{ question.correctAnswer }}
-          </mat-panel-description>
-        </mat-expansion-panel>
-      </div>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>Revisão</ng-template>
-      <div
-        style="margin-bottom: 15px"
-        *ngFor="let question of selectedQuestions"
-      >
-        <mat-card class="card-item">
-          <mat-card-header class="card-header">
-            <mat-card-title class="card-title">
-              Questão {{ question.id }}
-              <button
-                mat-stroked-button
-                [ngClass]="getDifficultyColor(question.difficulty)"
-              >
-                {{ question.difficulty }}
-              </button>
-            </mat-card-title>
-            <p>{{ question.score }}/10</p>
-          </mat-card-header>
-          <mat-card-content class="card-content">
-            <div class="question-text">
-              <p>{{ question.text }}</p>
-            </div>
-
-            <div class="options">
-              <p><strong>Marque a alternativa correta:</strong></p>
-              <mat-radio-group
-                aria-labelledby="options"
-                class="example-radio-group"
-              >
-                <mat-radio-button
-                  color="primary"
-                  *ngFor="let option of question.options"
-                  [value]="option"
-                  >{{ option }}</mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>Exportação de Arquivo</ng-template>
-      <div class="export-options">
-        <mat-radio-group [(ngModel)]="selectedExportFormat">
-          <mat-radio-button value="pdf">PDF</mat-radio-button>
-          <mat-radio-button value="docx"
-            >Microsoft Word (DOCX)</mat-radio-button
-          >
-          <mat-radio-button value="txt">Texto Simples (TXT)</mat-radio-button>
-        </mat-radio-group>
-
-        <div *ngIf="selectedExportFormat === 'pdf'">
-          <mat-checkbox [(ngModel)]="includeAnswers"
-            >Incluir Respostas</mat-checkbox
-          >
-          <mat-checkbox [(ngModel)]="includeHeaderFooter"
-            >Incluir Cabeçalho/Rodapé</mat-checkbox
-          >
-        </div>
-
-        <div *ngIf="selectedExportFormat === 'docx'"></div>
-      </div>
-    </mat-step>
-  </mat-horizontal-stepper>
-  <div class="container">
-    <button
-      mat-raised-button
-      color="primary"
-      class="generate-assessment"
-      *ngIf="selectedStepper != 0"
-      (click)="
-        selectedStepper == 1 ? toggleEditMode() : openConfirmationDialog()
-      "
+<div class="exam">
+  <mat-card> </mat-card>
+  <form (ngSubmit)="submit()">
+    <div
+      style="margin-bottom: 15px"
+      class="questions"
+      *ngFor="let question of questions"
     >
-      {{ selectedStepper == 1 ? "Edição" : "Gerar Prova" }}
-    </button>
-  </div>
+      <mat-card class="card-item">
+        <mat-card-header class="card-header">
+          <mat-card-title class="card-title">
+            Questão {{ question.id }}
+            <button
+              mat-stroked-button
+              [ngClass]="getDifficultyColor(question.difficulty)"
+            >
+              {{ question.difficulty }}
+            </button>
+          </mat-card-title>
+          <p>{{ question.score }}/10</p>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          <div class="question-text">
+            <p>{{ question.text }}</p>
+          </div>
+          <div class="options">
+            <p>Marque a alternativa correta:</p>
+            <mat-radio-group
+              aria-labelledby="options"
+              class="example-radio-group"
+            >
+              <mat-radio-button
+                color="primary"
+                *ngFor="let option of question.options"
+                [value]="option"
+                [disabled]="submitted"
+                >{{ option }}</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-expansion-panel [disabled]="!submitted">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Resposta Correta</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{ question.correctAnswer }}
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </div>
+    <button type="submit" mat-raised-button color="primary">Enviar</button>
+  </form>
 </div>

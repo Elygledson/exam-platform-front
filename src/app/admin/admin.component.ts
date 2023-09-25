@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
+  profileName = 'João';
   constructor(private router: Router) {}
 
   navigateToHome(): void {

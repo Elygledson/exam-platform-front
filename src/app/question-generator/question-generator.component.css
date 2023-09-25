@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.example-headers-align {
+  padding: 35px;
+}
+
+::ng-deep .mdc-text-field--filled .mdc-line-ripple::before {
+  border-bottom-style: none;
+}

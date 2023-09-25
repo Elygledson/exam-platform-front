@@ -240,3 +240,18 @@ mat-toolbar-row {
 .mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
 }
+
+#profileImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #3f51b5;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 150px;
+}
+
+#profileImage p {
+  margin-top: -22px;
+}

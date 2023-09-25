@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Difficulty, Question } from '../exam/exam.component';
+import {
+  Difficulty,
+  Question,
+  QuestionType,
+} from '../exam-generator/exam-generator.component';
 import { SnackbarService } from '../shared/services/snackbar.service';
+import { EditQuestionDialogComponent } from '../shared/edit-question-dialog/edit-question-dialog.component';
 
 @Component({
   selector: 'app-dashboard-question',
@@ -25,6 +30,7 @@ export class DashboardQuestionComponent {
         id: 1,
         name: 'Prof. John Doe',
       },
+      type: QuestionType.mcq,
     },
     {
       id: 2,
@@ -38,9 +44,10 @@ export class DashboardQuestionComponent {
         id: 1,
         name: 'Prof. John Doe',
       },
+      type: QuestionType.mcq,
     },
     {
-      id: 2,
+      id: 3,
       text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
       options: ['Assembly', 'C', 'Java', 'Binary'],
       correctAnswer: 'Java',
@@ -51,12 +58,13 @@ export class DashboardQuestionComponent {
         id: 1,
         name: 'Prof. John Doe',
       },
+      type: QuestionType.mcq,
     },
     {
-      id: 2,
+      id: 4,
       text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
-      options: ['Assembly', 'C', 'Java', 'Binary'],
-      correctAnswer: 'Java',
+      options: [],
+      correctAnswer: 'Sim',
       difficulty: Difficulty.HARD,
       category: 'Ciência da Computação',
       score: 5,
@@ -64,6 +72,7 @@ export class DashboardQuestionComponent {
         id: 1,
         name: 'Prof. John Doe',
       },
+      type: QuestionType.boolean,
     },
   ];
 
@@ -96,14 +105,13 @@ export class DashboardQuestionComponent {
   }
 
   editQuestion(index: number): void {
-    // const dialogRef = this.dialog.open(EditExamDialogComponent, {
-    //   width: '400px',
-    //   data: { exam: this.filterExams[index] },
-    // });
+    this.dialog.open(EditQuestionDialogComponent, {
+      width: '700px',
+      data: this.questions[index],
+    });
   }
 
   removeQuestion(index: number): void {
-    console.log('');
     this.filterQuestions.splice(index, 1);
     this.snackBar.showMessage('Questão removida com sucesso!', true);
   }

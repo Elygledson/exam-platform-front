@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { Difficulty, Question } from '../exam/exam.component';
+import {
+  Difficulty,
+  Question,
+  QuestionType,
+} from '../exam-generator/exam-generator.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditExamDialogComponent } from '../shared/edit-exam-dialog/edit-exam-dialog.component';
 import { Router } from '@angular/router';
@@ -41,6 +45,7 @@ export class DashboardExamComponent {
             id: 1,
             name: 'Prof. John Doe',
           },
+          type: QuestionType.mcq,
         },
         {
           id: 2,
@@ -54,9 +59,10 @@ export class DashboardExamComponent {
             id: 1,
             name: 'Prof. John Doe',
           },
+          type: QuestionType.mcq,
         },
         {
-          id: 2,
+          id: 3,
           text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
           options: ['Assembly', 'C', 'Java', 'Binary'],
           correctAnswer: 'Java',
@@ -67,6 +73,7 @@ export class DashboardExamComponent {
             id: 1,
             name: 'Prof. John Doe',
           },
+          type: QuestionType.mcq,
         },
       ],
       createdAt: new Date('2022-01-15'),
@@ -87,6 +94,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
         {
           id: 4,
@@ -106,6 +114,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
       ],
       createdAt: new Date('2022-02-20'),
@@ -126,6 +135,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
         {
           id: 4,
@@ -145,6 +155,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
       ],
       createdAt: new Date('2022-02-20'),
@@ -165,6 +176,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
         {
           id: 4,
@@ -184,6 +196,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
       ],
       createdAt: new Date('2022-02-20'),
@@ -204,6 +217,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
         {
           id: 4,
@@ -223,6 +237,7 @@ export class DashboardExamComponent {
             id: 2,
             name: 'Prof. Jane Smith',
           },
+          type: QuestionType.mcq,
         },
       ],
       createdAt: new Date('2022-02-20'),

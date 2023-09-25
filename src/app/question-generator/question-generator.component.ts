@@ -1,21 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { Question } from '../exam/exam.component';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { SnackbarService } from '../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css'],
+  templateUrl: './question-generator.component.html',
+  styleUrls: ['./question-generator.component.css'],
 })
-export class QuestionComponent {
+export class QuestionGeneratorComponent {
   @ViewChild(MatAccordion) accordion!: MatAccordion;
-  public multipleChoiceQuestion?: Question;
-  multipleChoiceForm: FormGroup;
+  question: FormGroup;
 
   constructor(private fb: FormBuilder, private snackbar: SnackbarService) {
-    this.multipleChoiceForm = this.fb.group({
+    this.question = this.fb.group({
       text: [''],
       options: this.fb.array([]),
       correctAnswer: [''],
@@ -26,7 +24,7 @@ export class QuestionComponent {
   }
 
   get optionControls() {
-    return (this.multipleChoiceForm.get('options') as FormArray).controls;
+    return (this.question.get('options') as FormArray).controls;
   }
 
   save(): void {
@@ -34,12 +32,12 @@ export class QuestionComponent {
   }
 
   addOption() {
-    const optionsArray = this.multipleChoiceForm.get('options') as FormArray;
+    const optionsArray = this.question.get('options') as FormArray;
     optionsArray.push(this.fb.control(''));
   }
 
   removeOption(index: number) {
-    const optionsArray = this.multipleChoiceForm.get('options') as FormArray;
+    const optionsArray = this.question.get('options') as FormArray;
     optionsArray.removeAt(index);
   }
 }
