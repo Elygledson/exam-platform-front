@@ -36,6 +36,9 @@ export class LoginComponent {
       }
     }
   }
+  navigateToRegister():void {
+    this.router.navigate(['/register'])
+  }
 
   get email() {
     return this.loginForm.get('email');

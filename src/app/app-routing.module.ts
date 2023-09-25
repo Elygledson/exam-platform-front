@@ -12,9 +12,11 @@ import { DashboardExamComponent } from './dashboard-exam/dashboard-exam.componen
 import { DashboardQuestionComponent } from './dashboard-question/dashboard-question.component';
 import { QuestionGeneratorComponent } from './question-generator/question-generator.component';
 import { ExamComponent } from './exam/exam.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  {path:'register',component: RegisterComponent},
   {
     path: 'admin',
     component: AdminComponent,

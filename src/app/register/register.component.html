@@ -1,4 +1,4 @@
-<!-- <div class="login-container">
+<div class="login-container">
   <svg
     width="531"
     height="200"
@@ -189,7 +189,7 @@
     </defs>
   </svg>
   <div class="login">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="form-group">
         <input
           type="email"
@@ -227,7 +227,24 @@
           >
         </div>
       </div>
-      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+    <div class="form-group">
+      <input
+        type="password"
+        id="password"
+        placeholder="repita sua senha"
+        formControlName="repeatPassword"
+        required
+      />
+      <div
+        *ngIf="isEquals==false"
+        class="error-message"
+      >
+        <span style="color: red"
+          >As Senhas não coincidem.</span
+        >
+      </div>
+    </div>
+      <button type="submit" [disabled]="registerForm.invalid">Entrar</button>
     </form>
   </div>
-</div> -->
+</div> 
