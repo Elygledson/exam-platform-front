@@ -4,22 +4,8 @@ mat-toolbar-row {
 
 .buttons {
   display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
+  width: 195px;
   justify-content: space-between;
-}
-
-.logo-text {
-  font-size: 28px; /* Tamanho da fonte */
-  font-family: "Comic Sans MS", cursive, sans-serif; /* Escolha uma fonte descontraída */
-  color: #fff; /* Cor do texto */
-  font-weight: bold; /* Peso da fonte (negrito) */
-  text-transform: uppercase; /* Converte o texto para maiúsculas */
-  letter-spacing: 2px; /* Espaçamento entre as letras */
-  padding: 8px 15px; /* Espaçamento interno para tornar o texto arredondado */
-  border-radius: 30px; /* Raio das bordas para criar uma aparência arredondada */
-  margin-right: 20px; /* Margem à direita para separá-lo dos botões */
 }
 
 /* Exams Panel */
@@ -27,23 +13,6 @@ mat-toolbar-row {
 .sidenav {
   width: 250px;
   background-color: #ffffff;
-}
-.user-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.user-profile img {
-  width: 80px; /* Ajuste o tamanho da imagem conforme necessário */
-  height: 80px; /* Ajuste o tamanho da imagem conforme necessário */
-  border-radius: 50%; /* Para criar uma imagem circular */
-}
-
-.user-profile h2 {
-  margin-top: 10px;
-  font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
 }
 
 .create-exam-button {
@@ -93,14 +62,14 @@ mat-toolbar-row {
 .exam-name {
   word-break: break-all;
   width: 300px;
-  font-size: 18px;
+  color: #777;
 }
 
 /* Estilo para a data de criação */
 .exam-date {
   word-break: break-all;
   width: 300px;
-  color: #555;
+  color: #777;
   margin-right: 10px;
 }
 
@@ -184,11 +153,10 @@ mat-toolbar-row {
 .sidebar-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding-left: 5px;
   padding-right: 5px;
   height: 100%;
-  margin-top: -80px;
+  justify-content: space-between;
 }
 
 .filter-card {
@@ -237,21 +205,6 @@ mat-toolbar-row {
   align-items: center;
 }
 
-.mat-expansion-panel:not([class*="mat-elevation-z"]) {
-  box-shadow: none;
-}
-
-#profileImage {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #3f51b5;
-  font-size: 35px;
-  color: #fff;
-  text-align: center;
-  line-height: 150px;
-}
-
-#profileImage p {
-  margin-top: -22px;
+.filter {
+  padding-bottom: 40px;
 }

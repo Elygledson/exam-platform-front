@@ -1,19 +1,61 @@
 import { Component } from '@angular/core';
-import {
-  Difficulty,
-  Question,
-  QuestionType,
-} from '../exam-generator/exam-generator.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TextFileService } from '../shared/services/text-file.service';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+
+export enum QuestionType {
+  boolean = 'Boolean Question',
+  mcq = 'Multiple Choice Question',
+  open = 'Open Question',
+}
+export interface Question {
+  id: number;
+  text: string;
+  options?: string[];
+  correctAnswer: string;
+  difficulty: Difficulty;
+  category: string;
+  score: number;
+  author: User;
+  type?: QuestionType;
+}
+
+export enum Difficulty {
+  EASY = 'Fácil',
+  MEDIUM = 'Médio',
+  HARD = 'Difícil',
+}
+
+export interface User {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-exam',
-  templateUrl: './exam.component.html',
-  styleUrls: ['./exam.component.css'],
+  templateUrl: './exam-generator.component.html',
+  styleUrls: ['./exam-generator.component.css'],
 })
-export class ExamComponent {
-  public submitted = false;
+export class ExamGeneratorComponent {
+  public selectedQuestions: Question[] = [];
+  public selectedExportFormat: string = '';
+  public includeAnswers: string = '';
+  public includeHeaderFooter: string = '';
+  public selectedStepper = 0;
+  public selectedCourse = '';
+  courses = [
+    'Introdução à Programação',
+    'Algoritmos e Estruturas de Dados',
+    'Banco de Dados e Sistemas de Gerenciamento',
+    'Redes de Computadores',
+    'Engenharia de Software',
+    'Inteligência Artificial',
+    'Segurança da Informação',
+    'Desenvolvimento Web',
+    'Sistemas Operacionais',
+    'Computação Gráfica',
+  ];
+
   questions: Question[] = [
     {
       id: 1,
@@ -116,7 +158,38 @@ export class ExamComponent {
     },
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public textFileService: TextFileService
+  ) {}
+
+  generatePdf(): void {}
+
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.textFileService.generateTextFile(this.selectedQuestions);
+    });
+  }
+
+  stepperSelectionChange(event: any): void {
+    if (event.selectedStep) this.selectedStepper = event.selectedIndex;
+  }
+
+  selectQuestion(newQuestion: Question) {
+    console.log(newQuestion);
+    const index = this.selectedQuestions.findIndex(
+      (question) => question.id === newQuestion.id
+    );
+    if (index == -1) {
+      this.selectedQuestions.push(newQuestion);
+    } else {
+      this.selectedQuestions.splice(index, 1);
+    }
+  }
+
+  onCourseChange(): void {}
 
   getDifficultyColor(difficulty: string) {
     switch (difficulty) {
@@ -131,8 +204,7 @@ export class ExamComponent {
     }
   }
 
-  submit(): void {
-    this.dialog.open(ConfirmationDialogComponent);
-    this.submitted = true;
-  }
+  exportAssessment(): void {}
+
+  toggleEditMode(): void {}
 }

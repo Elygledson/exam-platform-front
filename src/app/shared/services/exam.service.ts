@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environment';
 import { User } from './user.service';
-import { Question } from 'src/app/exam/exam.component';
+import { Question } from 'src/app/exam-generator/exam-generator.component';
 import { Observable, take } from 'rxjs';
 import { Exam } from 'src/app/admin/admin.component';
 

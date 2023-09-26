@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question } from 'src/app/exam/exam.component';
+import { Question } from 'src/app/exam-generator/exam-generator.component';
 
 @Injectable({
   providedIn: 'root',

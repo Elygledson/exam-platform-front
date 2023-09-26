@@ -7,20 +7,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { AdminComponent } from './admin/admin.component';
-import { ExamComponent } from './exam/exam.component';
+import { ExamGeneratorComponent } from './exam-generator/exam-generator.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { EditExamDialogComponent } from './shared/edit-exam-dialog/edit-exam-dialog.component';
+import { DashboardExamComponent } from './dashboard-exam/dashboard-exam.component';
+import { DashboardQuestionComponent } from './dashboard-question/dashboard-question.component';
+import { EditQuestionDialogComponent } from './shared/edit-question-dialog/edit-question-dialog.component';
+import { QuestionGeneratorComponent } from './question-generator/question-generator.component';
+import { ExamComponent } from './exam/exam.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationDialogComponent,
     AdminComponent,
-    ExamComponent,
+    ExamGeneratorComponent,
     LoginComponent,
     RegisterComponent,
+    EditExamDialogComponent,
+    DashboardExamComponent,
+    DashboardQuestionComponent,
+    QuestionGeneratorComponent,
+    EditQuestionDialogComponent,
+    ExamComponent,
   ],
   imports: [
     BrowserModule,
