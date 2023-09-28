@@ -151,3 +151,197 @@
     </form>
   </mat-expansion-panel>
 </mat-accordion>
+<div class="automated-question">
+  <div class="sidebar">
+    <!-- <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Gerar questões com base em PDF</mat-card-title>
+          <mat-card-subtitle
+            ><button
+              mat-mini-fab
+              color="primary"
+              aria-label="botão de adicionar conteúdo"
+              (click)="selectedOption = 'pdf'"
+            >
+              <mat-icon>add</mat-icon>
+            </button></mat-card-subtitle
+          >
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content> </mat-card-content>
+    </mat-card> -->
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Gerar questões com base em Texto</mat-card-title>
+          <mat-card-subtitle
+            ><button
+              mat-mini-fab
+              color="primary"
+              aria-label="botão de adicionar conteúdo"
+              (click)="selectedOption = 'text'"
+            >
+              <mat-icon>add</mat-icon>
+            </button></mat-card-subtitle
+          >
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content> </mat-card-content>
+    </mat-card>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Gerar questões com base em Video</mat-card-title>
+          <mat-card-subtitle
+            ><button
+              mat-mini-fab
+              color="primary"
+              aria-label="botão de adicionar conteúdo"
+              (click)="selectedOption = 'video'"
+            >
+              <mat-icon>add</mat-icon>
+            </button></mat-card-subtitle
+          >
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content> </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="view-questions">
+    <mat-card *ngIf="selectedOption" class="content">
+      <!-- <mat-card-content *ngIf="selectedOption == 'pdf'">
+        <div class="files">
+          <input
+            type="file"
+            class="file-input"
+            (change)="onFileSelected($event)"
+            #fileUpload
+          />
+
+          <div class="file-upload">
+            {{ fileName || "Nenhum arquivo anexado." }}
+
+            <button
+              mat-mini-fab
+              color="primary"
+              class="upload-btn"
+              (click)="fileUpload.click()"
+            >
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="questions">
+          <div *ngFor="let question of questions">
+            <p>{{ question.text }}</p>
+            <div *ngFor="let option of question.options">
+              <p>{{ option }}</p>
+            </div>
+            <p>{{ question.correctAnswer }}</p>
+          </div>
+        </div>
+      </mat-card-content> -->
+      <mat-card-content *ngIf="selectedOption == 'video'">
+        <form
+          class="example-form"
+          (submit)="generateQuestions()"
+          #form="ngForm"
+        >
+          <mat-form-field class="example-full-width">
+            <mat-label>URL</mat-label>
+            <input
+              matInput
+              placeholder="URL do video"
+              name="url"
+              ngModel
+              required
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Gerar Questões
+          </button>
+        </form></mat-card-content
+      >
+      <mat-card-content *ngIf="selectedOption == 'text'">
+        <form
+          class="example-form"
+          (submit)="generateQuestions()"
+          #form="ngForm"
+        >
+          <mat-form-field class="example-full-width">
+            <mat-label>Texto</mat-label>
+            <textarea
+              matInput
+              placeholder="Adicione um texto"
+              name="texto"
+              ngModel
+              required
+            ></textarea>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Gerar Questões
+          </button>
+        </form>
+        <ng-container *ngIf="!isLoaded; else loading">
+          <form class="questions" (submit)="generateQuestions()" #form="ngForm">
+            <div *ngFor="let question of questions; let i = index">
+              <mat-form-field class="full-width">
+                <mat-label>Descrição {{ i }}</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Descrição"
+                  id="input-description-{{ i }}"
+                  name="description-{{ i }}"
+                  [(ngModel)]="questions[i].text"
+                  required
+                ></textarea>
+              </mat-form-field>
+              <div *ngFor="let option of question.options; let j = index">
+                <mat-form-field class="full-width">
+                  <mat-label>Opção</mat-label>
+                  <input
+                    matInput
+                    placeholder="Opção"
+                    id="input-option-{{ j }}"
+                    name="option-{{ j }}"
+                    [(ngModel)]="questions[i].options[j]"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <mat-form-field class="full-width">
+                <mat-label>Resposta Correta</mat-label>
+                <input
+                  matInput
+                  placeholder="Resposta Correta"
+                  id="input-answer-{{ i }}"
+                  name="answer-{{ i }}"
+                  [(ngModel)]="questions[i].correctAnswer"
+                  required
+                />
+              </mat-form-field>
+            </div>
+          </form>
+        </ng-container>
+        <ng-template #loading>
+          <div class="spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

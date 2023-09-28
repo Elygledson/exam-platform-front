@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { AdminComponent } from './admin/admin.component';
 import { ExamGeneratorComponent } from './exam-generator/exam-generator.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -39,6 +39,7 @@ import { ExamComponent } from './exam/exam.component';
     MaterialModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     {

@@ -11,7 +11,7 @@ export enum QuestionType {
 export interface Question {
   id: number;
   text: string;
-  options?: string[];
+  options: string[];
   correctAnswer: string;
   difficulty: Difficulty;
   category: string;
