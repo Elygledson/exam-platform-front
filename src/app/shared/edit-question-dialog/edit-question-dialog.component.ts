@@ -24,12 +24,10 @@ export class EditQuestionDialogComponent {
     private snackbar: SnackbarService
   ) {
     this.question = this.fb.group({
-      text: [this.data.text],
+      text: [this.data.description],
       options: this.fb.array(this.data.options || []),
-      correctAnswer: [this.data.correctAnswer],
-      difficulty: [this.data.difficulty],
-      category: [this.data.category],
-      score: [this.data.score],
+      answer: [this.data.answer],
+      level: [this.data.level],
     });
   }
 
