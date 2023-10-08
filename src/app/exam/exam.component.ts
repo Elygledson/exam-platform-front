@@ -17,9 +17,10 @@ export class ExamComponent {
   questions: Question[] = [
     {
       id: 1,
-      text: 'Qual é a linguagem de programação mais comumente usada para ensinar conceitos básicos de programação?',
+      description:
+        'Qual é a linguagem de programação mais comumente usada para ensinar conceitos básicos de programação?',
       options: ['Python', 'Java', 'C++', 'Ruby'],
-      correctAnswer: 'Python',
+      answer: 'Python',
       difficulty: Difficulty.EASY,
       category: 'Introdução à Programação',
       score: 2.0,
@@ -31,9 +32,10 @@ export class ExamComponent {
     },
     {
       id: 2,
-      text: 'Qual é a estrutura de dados usada para representar uma coleção de elementos únicos?',
+      description:
+        'Qual é a estrutura de dados usada para representar uma coleção de elementos únicos?',
       options: ['Pilha', 'Fila', 'Conjunto', 'Lista Encadeada'],
-      correctAnswer: 'Conjunto',
+      answer: 'Conjunto',
       difficulty: Difficulty.MEDIUM,
       category: 'Algoritmos e Estruturas de Dados',
       score: 3.0,
@@ -45,9 +47,10 @@ export class ExamComponent {
     },
     {
       id: 3,
-      text: 'Qual linguagem é comumente usada para consultas em bancos de dados relacionais?',
+      description:
+        'Qual linguagem é comumente usada para consultas em bancos de dados relacionais?',
       options: ['HTML', 'SQL', 'JavaScript', 'Python'],
-      correctAnswer: 'SQL',
+      answer: 'SQL',
       difficulty: Difficulty.HARD,
       category: 'Banco de Dados e Sistemas de Gerenciamento',
       score: 3.0,
@@ -59,14 +62,15 @@ export class ExamComponent {
     },
     {
       id: 4,
-      text: 'O que significa a sigla "HTTP" em termos de protocolos de comunicação na web?',
+      description:
+        'O que significa a sigla "HTTP" em termos de protocolos de comunicação na web?',
       options: [
         'HyperText Transfer Protocol',
         'High-Tech Transfer Protocol',
         'HyperTransfer Text Protocol',
         'HyperTech Text Protocol',
       ],
-      correctAnswer: 'HyperText Transfer Protocol',
+      answer: 'HyperText Transfer Protocol',
       difficulty: Difficulty.MEDIUM,
       category: 'Redes de Computadores',
       score: 2.5,
@@ -78,14 +82,15 @@ export class ExamComponent {
     },
     {
       id: 5,
-      text: 'Qual é o ciclo de desenvolvimento de software que enfatiza a entrega contínua de software funcional?',
+      description:
+        'Qual é o ciclo de desenvolvimento de software que enfatiza a entrega contínua de software funcional?',
       options: [
         'Modelo em Cascata',
         'Scrum',
         'Modelo Espiral',
         'Desenvolvimento em V',
       ],
-      correctAnswer: 'Scrum',
+      answer: 'Scrum',
       difficulty: Difficulty.EASY,
       category: 'Engenharia de Software',
       score: 2.0,
@@ -97,14 +102,15 @@ export class ExamComponent {
     },
     {
       id: 6,
-      text: 'Qual subcampo da inteligência artificial se concentra em ensinar máquinas a aprender com dados?',
+      description:
+        'Qual subcampo da inteligência artificial se concentra em ensinar máquinas a aprender com dados?',
       options: [
         'Processamento de Linguagem Natural',
         'Visão Computacional',
         'Aprendizado de Máquina',
         'Lógica Fuzzy',
       ],
-      correctAnswer: 'Aprendizado de Máquina',
+      answer: 'Aprendizado de Máquina',
       difficulty: Difficulty.MEDIUM,
       category: 'Inteligência Artificial',
       score: 3.0,

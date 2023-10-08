@@ -23,7 +23,7 @@ export class EditExamDialogComponent {
   //   // Preencha o FormArray com questões existentes
   //   const questionsFormArray = this.editForm.get('questions') as FormArray;
   //   data.exam.questions.forEach((question) => {
-  //     questionsFormArray.push(this.formBuilder.control(question.text));
+  //     questionsFormArray.push(this.formBuilder.control(questiondescription));
   //   });
   // }
   // onSubmit() {

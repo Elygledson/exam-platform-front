@@ -20,9 +20,10 @@ export class DashboardQuestionComponent {
   questions: Question[] = [
     {
       id: 1,
-      text: 'Qual é o termo usado para se referir a um espaço de armazenamento de dados em um computador?',
+      description:
+        'Qual é o termo usado para se referir a um espaço de armazenamento de dados em um computador?',
       options: ['Bit', 'Byte', 'Disco Rígido', 'Memória RAM'],
-      correctAnswer: 'Byte',
+      answer: 'Byte',
       difficulty: Difficulty.EASY,
       category: 'Ciência da Computação',
       score: 3,
@@ -34,9 +35,10 @@ export class DashboardQuestionComponent {
     },
     {
       id: 2,
-      text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
+      description:
+        'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
       options: ['Assembly', 'C', 'Java', 'Binary'],
-      correctAnswer: 'Java',
+      answer: 'Java',
       difficulty: Difficulty.EASY,
       category: 'Ciência da Computação',
       score: 1,
@@ -48,9 +50,10 @@ export class DashboardQuestionComponent {
     },
     {
       id: 3,
-      text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
+      description:
+        'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
       options: ['Assembly', 'C', 'Java', 'Binary'],
-      correctAnswer: 'Java',
+      answer: 'Java',
       difficulty: Difficulty.MEDIUM,
       category: 'Ciência da Computação',
       score: 3,
@@ -62,9 +65,10 @@ export class DashboardQuestionComponent {
     },
     {
       id: 4,
-      text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
+      description:
+        'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
       options: [],
-      correctAnswer: 'Sim',
+      answer: 'Sim',
       difficulty: Difficulty.HARD,
       category: 'Ciência da Computação',
       score: 5,

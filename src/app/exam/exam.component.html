@@ -21,7 +21,7 @@
         </mat-card-header>
         <mat-card-content class="card-content">
           <div class="question-text">
-            <p>{{ question.text }}</p>
+            <p>{{ question.description }}</p>
           </div>
           <div class="options">
             <p>Marque a alternativa correta:</p>
@@ -45,7 +45,7 @@
           <mat-panel-title>Resposta Correta</mat-panel-title>
         </mat-expansion-panel-header>
         <mat-panel-description>
-          {{ question.correctAnswer }}
+          {{ question.answer }}
         </mat-panel-description>
       </mat-expansion-panel>
     </div>

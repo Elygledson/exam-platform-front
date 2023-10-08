@@ -35,9 +35,10 @@ export class DashboardExamComponent {
       questions: [
         {
           id: 1,
-          text: 'Qual é o termo usado para se referir a um espaço de armazenamento de dados em um computador?',
+          description:
+            'Qual é o termo usado para se referir a um espaço de armazenamento de dados em um computador?',
           options: ['Bit', 'Byte', 'Disco Rígido', 'Memória RAM'],
-          correctAnswer: 'Byte',
+          answer: 'Byte',
           difficulty: Difficulty.EASY,
           category: 'Ciência da Computação',
           score: 10,
@@ -49,9 +50,10 @@ export class DashboardExamComponent {
         },
         {
           id: 2,
-          text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
+          description:
+            'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
           options: ['Assembly', 'C', 'Java', 'Binary'],
-          correctAnswer: 'Java',
+          answer: 'Java',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 15,
@@ -63,9 +65,10 @@ export class DashboardExamComponent {
         },
         {
           id: 3,
-          text: 'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
+          description:
+            'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
           options: ['Assembly', 'C', 'Java', 'Binary'],
-          correctAnswer: 'Java',
+          answer: 'Java',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 15,
@@ -84,9 +87,10 @@ export class DashboardExamComponent {
       questions: [
         {
           id: 3,
-          text: 'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
+          description:
+            'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
           options: ['Árvore Binária', 'Lista Encadeada', 'Grafo', 'Fila'],
-          correctAnswer: 'Grafo',
+          answer: 'Grafo',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
@@ -98,14 +102,14 @@ export class DashboardExamComponent {
         },
         {
           id: 4,
-          text: 'O que é uma pilha (stack) em estruturas de dados?',
+          description: 'O que é uma pilha (stack) em estruturas de dados?',
           options: [
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
             'Um tipo de árvore',
             'Uma lista linear',
             'Uma matriz bidimensional',
           ],
-          correctAnswer:
+          answer:
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
@@ -125,9 +129,10 @@ export class DashboardExamComponent {
       questions: [
         {
           id: 3,
-          text: 'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
+          description:
+            'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
           options: ['Árvore Binária', 'Lista Encadeada', 'Grafo', 'Fila'],
-          correctAnswer: 'Grafo',
+          answer: 'Grafo',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
@@ -139,14 +144,14 @@ export class DashboardExamComponent {
         },
         {
           id: 4,
-          text: 'O que é uma pilha (stack) em estruturas de dados?',
+          description: 'O que é uma pilha (stack) em estruturas de dados?',
           options: [
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
             'Um tipo de árvore',
             'Uma lista linear',
             'Uma matriz bidimensional',
           ],
-          correctAnswer:
+          answer:
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
@@ -166,9 +171,10 @@ export class DashboardExamComponent {
       questions: [
         {
           id: 3,
-          text: 'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
+          description:
+            'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
           options: ['Árvore Binária', 'Lista Encadeada', 'Grafo', 'Fila'],
-          correctAnswer: 'Grafo',
+          answer: 'Grafo',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
@@ -180,14 +186,14 @@ export class DashboardExamComponent {
         },
         {
           id: 4,
-          text: 'O que é uma pilha (stack) em estruturas de dados?',
+          description: 'O que é uma pilha (stack) em estruturas de dados?',
           options: [
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
             'Um tipo de árvore',
             'Uma lista linear',
             'Uma matriz bidimensional',
           ],
-          correctAnswer:
+          answer:
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
@@ -207,9 +213,10 @@ export class DashboardExamComponent {
       questions: [
         {
           id: 3,
-          text: 'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
+          description:
+            'Qual das seguintes estruturas de dados é usada para representar relacionamentos muitos-para-muitos?',
           options: ['Árvore Binária', 'Lista Encadeada', 'Grafo', 'Fila'],
-          correctAnswer: 'Grafo',
+          answer: 'Grafo',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
@@ -221,14 +228,14 @@ export class DashboardExamComponent {
         },
         {
           id: 4,
-          text: 'O que é uma pilha (stack) em estruturas de dados?',
+          description: 'O que é uma pilha (stack) em estruturas de dados?',
           options: [
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
             'Um tipo de árvore',
             'Uma lista linear',
             'Uma matriz bidimensional',
           ],
-          correctAnswer:
+          answer:
             'Uma estrutura que segue o princípio "o último a entrar é o primeiro a sair"',
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',

@@ -27,7 +27,9 @@ export class EditQuestionDialogComponent {
       text: [this.data.description],
       options: this.fb.array(this.data.options || []),
       answer: [this.data.answer],
-      level: [this.data.level],
+      difficulty: [this.data.difficulty],
+      category: [this.data.category],
+      score: [this.data.score],
     });
   }
 

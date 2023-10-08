@@ -45,7 +45,7 @@
       <div style="display: flex; flex-direction: column">
         <mat-form-field>
           <mat-label>Resposta Correta</mat-label>
-          <input matInput formControlName="correctAnswer" />
+          <input matInput formControlName="answer" />
         </mat-form-field>
 
         <mat-form-field>
@@ -84,7 +84,7 @@
       <div style="display: flex; flex-direction: column">
         <mat-form-field>
           <mat-label>Descrição</mat-label>
-          <input matInput formControlName="correctAnswer" />
+          <input matInput formControlName="answer" />
         </mat-form-field>
       </div>
       <mat-selection-list [multiple]="false">
@@ -126,7 +126,7 @@
       <div style="display: flex; flex-direction: column">
         <mat-form-field>
           <mat-label>Descrição</mat-label>
-          <input matInput formControlName="correctAnswer" />
+          <input matInput formControlName="answer" />
         </mat-form-field>
       </div>
       <mat-form-field>
@@ -212,38 +212,6 @@
   </div>
   <div class="view-questions">
     <mat-card *ngIf="selectedOption" class="content">
-      <!-- <mat-card-content *ngIf="selectedOption == 'pdf'">
-        <div class="files">
-          <input
-            type="file"
-            class="file-input"
-            (change)="onFileSelected($event)"
-            #fileUpload
-          />
-
-          <div class="file-upload">
-            {{ fileName || "Nenhum arquivo anexado." }}
-
-            <button
-              mat-mini-fab
-              color="primary"
-              class="upload-btn"
-              (click)="fileUpload.click()"
-            >
-              <mat-icon>attach_file</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="questions">
-          <div *ngFor="let question of questions">
-            <p>{{ question.text }}</p>
-            <div *ngFor="let option of question.options">
-              <p>{{ option }}</p>
-            </div>
-            <p>{{ question.correctAnswer }}</p>
-          </div>
-        </div>
-      </mat-card-content> -->
       <mat-card-content *ngIf="selectedOption == 'video'">
         <form
           class="example-form"
@@ -305,7 +273,7 @@
                   placeholder="Descrição"
                   id="input-description-{{ i }}"
                   name="description-{{ i }}"
-                  [(ngModel)]="questions[i].text"
+                  [(ngModel)]="questions[i].author"
                   required
                 ></textarea>
               </mat-form-field>
@@ -329,7 +297,7 @@
                   placeholder="Resposta Correta"
                   id="input-answer-{{ i }}"
                   name="answer-{{ i }}"
-                  [(ngModel)]="questions[i].correctAnswer"
+                  [(ngModel)]="questions[i].answer"
                   required
                 />
               </mat-form-field>
