@@ -32,6 +32,7 @@
   margin-bottom: 20px; /* Espaço entre os cards */
   border: 1px solid #ccc; /* Borda opcional para os cards */
   padding: 10px; /* Espaçamento interno nos cards */
+  border-radius: 40px;
 }
 
 .card:hover {
@@ -40,6 +41,7 @@
 
 .card-header {
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .easy-button {
