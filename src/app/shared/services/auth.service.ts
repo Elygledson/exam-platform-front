@@ -18,7 +18,7 @@ export class AuthService {
     this.crudService.httpPost('auth/login', login).then((response) => {
       console.log(response);
       this.userData = response.data;
-      localStorage.setItem('user', this.userData.data.token);
+      localStorage.setItem('user', this.userData);
       this.router.navigate(['/admin']);
     });
   }
