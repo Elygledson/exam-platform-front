@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: 'create-exam', component: ExamGeneratorComponent },
       { path: 'create-question', component: QuestionGeneratorComponent },
     ],
-    canActivate: [],
+    canActivate: [AuthGuard],
   },
   { path: 'exam', component: ExamComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
