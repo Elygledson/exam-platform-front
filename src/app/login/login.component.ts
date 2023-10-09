@@ -36,8 +36,9 @@ export class LoginComponent {
       }
     }
   }
-  navigateToRegister():void {
-    this.router.navigate(['/register'])
+
+  navigateToRegister(): void {
+    this.router.navigate(['/register']);
   }
 
   get email() {

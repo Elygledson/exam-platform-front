@@ -18,15 +18,35 @@ body {
   border-radius: 5px;
 }
 
-.mat-mdc-snack-bar-container {
-  --mat-mdc-snack-bar-button-color: #ffffff;
+/* Snackbar Configuration */
+
+.snackbar-success {
+  --mdc-snackbar-container-color: #04ad9e;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+  button {
+    color: white;
+  }
+}
+
+.snackbar-danger {
+  --mdc-snackbar-container-color: #e13510;
   --mdc-snackbar-supporting-text-color: #ffffff;
 
-  &.app-notification-error {
-    --mdc-snackbar-container-color: #f23a2f;
+  button {
+    color: white;
   }
+}
 
-  &.app-notification-success {
-    --mdc-snackbar-container-color: rgb(54, 219, 114);
+.snackbar-info {
+  background-color: #3a86ff;
+
+  button {
+    color: white;
   }
+}
+
+.snackbar-success,
+.snackbar-danger,
+.snackbar-info {
+  color: #ffffff;
 }

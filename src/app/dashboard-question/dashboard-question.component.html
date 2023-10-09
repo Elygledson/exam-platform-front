@@ -1,14 +1,21 @@
 <div class="exams-container">
   <div class="filter">
-    <div style="display: flex; gap: 40%;">
-
-
+    <div style="display: flex; gap: 40%">
       <div class="filter-input">
-        <input type="text" placeholder="Filtrar" [(ngModel)]="filter" (input)="applyFilter()" />
+        <input
+          type="text"
+          placeholder="Filtrar"
+          [(ngModel)]="filter"
+          (input)="applyFilter()"
+        />
         <mat-icon class="search-icon">search</mat-icon>
       </div>
-      <button mat-raised-button class="create-exam-button"
-        style="background-color: #44009d74; color: white; border-radius: 40px;" (click)="navigateToQuestions()">
+      <button
+        mat-raised-button
+        class="create-exam-button"
+        style="background-color: #44009d74; color: white; border-radius: 40px"
+        (click)="navigateToQuestions()"
+      >
         <mat-icon>add</mat-icon> Criar Questão
       </button>
     </div>
@@ -19,21 +26,33 @@
     <div class="column">Dificuldade</div>
     <div class="column">Pontuação</div>
   </div>
-  <div style="height: 20px;"></div>
-  <div class="exam-card" *ngFor="let question of filterQuestions; let i = index">
+  <div style="height: 20px"></div>
+  <div
+    class="exam-card"
+    *ngFor="let question of filterQuestions; let i = index"
+  >
     <div class="exam-details">
-      <div class="exam-discipline">{{ question.category }}</div>
-      <div class="exam-discipline">{{ question.author.name }}</div>
-      <div class="exam-discipline">{{ question.difficulty }}</div>
+      <!-- <div class="exam-discipline">{{ question.level }}</div> -->
+      <div class="exam-discipline">Administrador</div>
+      <div class="exam-discipline">{{ question.level }}</div>
       <div class="exam-discipline">
-        <ng-container *ngFor="let star of getStarArray(question.score)">
+        <ng-container *ngFor="let star of getStarArray(question.level)">
           <mat-icon class="star">star</mat-icon>
         </ng-container>
       </div>
-      <button mat-button color="primary" style="color: white;" (click)="editQuestion(i)">
+      <button
+        mat-button
+        color="primary"
+        style="color: white"
+        (click)="editQuestion(i)"
+      >
         Editar
       </button>
-      <button mat-icon-button style="color: #FF4848;" (click)="removeQuestion(i)">
+      <button
+        mat-icon-button
+        style="color: #ff4848"
+        (click)="removeQuestion(i)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </div>
