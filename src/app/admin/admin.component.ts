@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { DefaultCrudService } from '../shared/services/default-crud.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AdminComponent {
   profileName = 'João';
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   navigateToHome(): void {
     this.router.navigate(['admin']);
@@ -33,6 +35,7 @@ export class AdminComponent {
   }
 
   logout(): void {
+    this.authService.logout();
     this.router.navigate(['login']);
   }
 }

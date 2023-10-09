@@ -29,7 +29,7 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard],
   },
-  { path: 'exam', component: ExamComponent },
+  { path: 'exam', component: ExamComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 @NgModule({

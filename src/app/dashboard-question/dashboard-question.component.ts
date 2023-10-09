@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import {
-  Difficulty,
-  Question,
-  QuestionType,
-} from '../exam-generator/exam-generator.component';
 import { EditQuestionDialogComponent } from '../shared/edit-question-dialog/edit-question-dialog.component';
+import { QuestionInterface } from '../shared/interfaces/question.interface';
+import { DefaultCrudService } from '../shared/services/default-crud.service';
 
 @Component({
   selector: 'app-dashboard-question',
@@ -15,58 +12,18 @@ import { EditQuestionDialogComponent } from '../shared/edit-question-dialog/edit
 })
 export class DashboardQuestionComponent {
   filter: string = '';
-  filterQuestions: Question[] = [];
-  questions: Question[] = [
-    {
-      id: 1,
-      description:
-        'Qual é o termo usado para se referir a um espaço de armazenamento de dados em um computador?',
-      options: ['Bit', 'Byte', 'Disco Rígido', 'Memória RAM'],
-      answer: 'Byte',
-      difficulty: Difficulty.EASY,
-      category: 'Ciência da Computação',
-      score: 3,
-      type: QuestionType.mcq,
-    },
-    {
-      id: 2,
-      description:
-        'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
-      options: ['Assembly', 'C', 'Java', 'Binary'],
-      answer: 'Java',
-      difficulty: Difficulty.EASY,
-      category: 'Ciência da Computação',
-      score: 1,
-      type: QuestionType.mcq,
-    },
-    {
-      id: 3,
-      description:
-        'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
-      options: ['Assembly', 'C', 'Java', 'Binary'],
-      answer: 'Java',
-      difficulty: Difficulty.MEDIUM,
-      category: 'Ciência da Computação',
-      score: 3,
-      type: QuestionType.mcq,
-    },
-    {
-      id: 4,
-      description:
-        'Qual das seguintes linguagens de programação é uma linguagem de alto nível?',
-      options: [],
-      answer: 'Sim',
-      difficulty: Difficulty.HARD,
-      category: 'Ciência da Computação',
-      score: 5,
-      type: QuestionType.boolean,
-    },
-  ];
+  filterQuestions: QuestionInterface[] = [];
 
-  constructor(private router: Router, private dialog: MatDialog) {}
+  constructor(
+    private crudService: DefaultCrudService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.filterQuestions = this.questions;
+    this.crudService.httpGet('questions').then((response) => {
+      this.filterQuestions = response.questions;
+    });
   }
 
   navigateToQuestions(): void {
@@ -78,7 +35,7 @@ export class DashboardQuestionComponent {
   }
 
   applyFilter(): void {
-    this.filterQuestions = this.questions.filter((question) =>
+    this.filterQuestions = this.filterQuestions.filter((question) =>
       question.category.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
@@ -86,11 +43,13 @@ export class DashboardQuestionComponent {
   editQuestion(index: number): void {
     this.dialog.open(EditQuestionDialogComponent, {
       width: '700px',
-      data: this.questions[index],
+      data: this.filterQuestions[index],
     });
   }
 
   removeQuestion(index: number): void {
-    this.filterQuestions.splice(index, 1);
+    this.crudService
+      .httpDelete(`questions/${this.filterQuestions[index].id}`)
+      .then((response) => this.filterQuestions.splice(index, 1));
   }
 }

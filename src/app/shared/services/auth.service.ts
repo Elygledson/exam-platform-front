@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DefaultCrudService } from './default-crud.service';
-import { User } from 'src/app/exam-generator/exam-generator.component';
 import { LoginInterface } from '../interfaces/login.interface';
 import { Router } from '@angular/router';
 
@@ -19,6 +18,7 @@ export class AuthService {
       console.log(response);
       this.userData = response.data;
       localStorage.setItem('user', this.userData);
+      localStorage.setItem('jwt', this.userData.token);
       this.router.navigate(['/admin']);
     });
   }
@@ -28,10 +28,12 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('user');
+    const user = !!localStorage.getItem('user');
+    console.log(user);
+    return user;
   }
 
   getToken(): string | null {
-    return this.userData.data.token;
+    return localStorage.getItem('jwt');
   }
 }

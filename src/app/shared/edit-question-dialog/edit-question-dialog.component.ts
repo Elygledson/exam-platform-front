@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import {
-  Question,
-  QuestionType,
-} from 'src/app/exam-generator/exam-generator.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DefaultCrudService } from '../services/default-crud.service';
+import {
+  QuestionInterface,
+  QuestionType,
+} from '../interfaces/question.interface';
 
 @Component({
   selector: 'app-edit-question-dialog',
@@ -18,11 +18,12 @@ export class EditQuestionDialogComponent {
   public QuestionType = QuestionType;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Question,
+    @Inject(MAT_DIALOG_DATA) public data: QuestionInterface,
     private crudService: DefaultCrudService,
     public dialogRef: MatDialogRef<EditQuestionDialogComponent>,
     private fb: FormBuilder
   ) {
+    console.log(this.data);
     this.question = this.fb.group({
       id: [this.data.id],
       description: [this.data.description],
@@ -39,9 +40,11 @@ export class EditQuestionDialogComponent {
   }
 
   save(): void {
-    console.log(this.question.value);
     this.crudService
-      .httpPatch('questions/', this.question.value)
+      .httpPatch(
+        `questions/${this.question.get('id')?.value}`,
+        this.question.value
+      )
       .then((response) => this.dialogRef.close());
   }
 

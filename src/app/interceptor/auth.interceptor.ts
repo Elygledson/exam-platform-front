@@ -13,11 +13,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (this.authService.isAuthenticated()) {
-      console.log('dsjadk');
       const token = this.authService.getToken();
-      console.log('ds', token);
       const authReq = req.clone({
-        setHeaders: { auth: `Bearer ${token}` },
+        setHeaders: { auth: `${token}` },
       });
       return next.handle(authReq);
     }
