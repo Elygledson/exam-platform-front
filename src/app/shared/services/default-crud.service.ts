@@ -11,7 +11,7 @@ import { SnackbarComponent } from '../../snackbar/snackbar.component';
   providedIn: 'root',
 })
 export class DefaultCrudService {
-  private url = 'http://localhost:8080/api';
+  private url = 'http://localhost:3001';
   constructor(
     private http: HttpClient,
     public snackBar: MatSnackBar,

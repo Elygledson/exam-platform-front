@@ -1,14 +1,19 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { Component, Input, ViewChild } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
-import { SnackbarService } from '../shared/services/snackbar.service';
-import { HttpClient } from '@angular/common/http';
 import {
   Difficulty,
   Question,
   QuestionType,
 } from '../exam-generator/exam-generator.component';
 import { Subscription } from 'rxjs';
+import { DefaultCrudService } from '../shared/services/default-crud.service';
 
 @Component({
   selector: 'app-question',
@@ -17,47 +22,23 @@ import { Subscription } from 'rxjs';
 })
 export class QuestionGeneratorComponent {
   @ViewChild(MatAccordion) accordion!: MatAccordion;
-  @Input()
-  requiredFileType!: string;
-
-  fileName = '';
-  uploadProgress!: number;
-  uploadSub!: Subscription;
   question: FormGroup;
   selectedOption = '';
   questions: Question[] = [];
   isLoaded = false;
 
   constructor(
-    private http: HttpClient,
     private fb: FormBuilder,
-    private snackbar: SnackbarService
+    private crudService: DefaultCrudService
   ) {
     this.question = this.fb.group({
-      description: [''],
+      description: ['', Validators.required],
       options: this.fb.array([]),
-      answer: [''],
-      difficulty: [''],
-      category: [''],
-      score: [''],
+      answer: ['', Validators.required],
+      difficulty: ['', Validators.required],
+      category: ['', Validators.required],
+      score: [0, Validators.required],
     });
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('thumbnail', file);
-      console.log(formData);
-
-      const upload$ = this.http.post('/api/thumbnail-upload', formData);
-
-      upload$.subscribe();
-    }
   }
 
   get optionControls() {
@@ -65,7 +46,10 @@ export class QuestionGeneratorComponent {
   }
 
   save(): void {
-    this.snackbar.showMessage('Questão salva com sucesso!', true);
+    console.log(this.question.value);
+    this.crudService
+      .httpPost('questions', this.question.value)
+      .then((response) => this.question.reset());
   }
 
   addOption() {
@@ -92,10 +76,6 @@ export class QuestionGeneratorComponent {
           difficulty: Difficulty.EASY,
           category: 'Ciência da Computação',
           score: 3,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -107,10 +87,6 @@ export class QuestionGeneratorComponent {
           difficulty: Difficulty.EASY,
           category: 'Ciência da Computação',
           score: 1,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -121,10 +97,6 @@ export class QuestionGeneratorComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 3,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -135,10 +107,6 @@ export class QuestionGeneratorComponent {
           difficulty: Difficulty.HARD,
           category: 'Ciência da Computação',
           score: 5,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.boolean,
         },
       ];

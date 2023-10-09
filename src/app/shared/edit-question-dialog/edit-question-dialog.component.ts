@@ -4,8 +4,8 @@ import {
   Question,
   QuestionType,
 } from 'src/app/exam-generator/exam-generator.component';
-import { SnackbarService } from '../services/snackbar.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DefaultCrudService } from '../services/default-crud.service';
 
 @Component({
   selector: 'app-edit-question-dialog',
@@ -19,12 +19,13 @@ export class EditQuestionDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Question,
+    private crudService: DefaultCrudService,
     public dialogRef: MatDialogRef<EditQuestionDialogComponent>,
-    private fb: FormBuilder,
-    private snackbar: SnackbarService
+    private fb: FormBuilder
   ) {
     this.question = this.fb.group({
-      text: [this.data.description],
+      id: [this.data.id],
+      description: [this.data.description],
       options: this.fb.array(this.data.options || []),
       answer: [this.data.answer],
       difficulty: [this.data.difficulty],
@@ -39,8 +40,9 @@ export class EditQuestionDialogComponent {
 
   save(): void {
     console.log(this.question.value);
-    this.snackbar.showMessage('Questão salva com sucesso!', true);
-    this.dialogRef.close();
+    this.crudService
+      .httpPatch('questions/', this.question.value)
+      .then((response) => this.dialogRef.close());
   }
 
   addOption() {

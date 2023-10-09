@@ -7,7 +7,6 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { EditExamDialogComponent } from '../shared/edit-exam-dialog/edit-exam-dialog.component';
 import { Router } from '@angular/router';
-import { SnackbarService } from '../shared/services/snackbar.service';
 
 export interface Exam {
   author: string;
@@ -42,10 +41,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.EASY,
           category: 'Ciência da Computação',
           score: 10,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -57,10 +52,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 15,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -72,10 +63,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 15,
-          author: {
-            id: 1,
-            name: 'Prof. John Doe',
-          },
           type: QuestionType.mcq,
         },
       ],
@@ -94,10 +81,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -114,10 +97,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
       ],
@@ -136,10 +115,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -156,10 +131,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
       ],
@@ -178,10 +149,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -198,10 +165,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
       ],
@@ -220,10 +183,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
         {
@@ -240,10 +199,6 @@ export class DashboardExamComponent {
           difficulty: Difficulty.MEDIUM,
           category: 'Ciência da Computação',
           score: 20,
-          author: {
-            id: 2,
-            name: 'Prof. Jane Smith',
-          },
           type: QuestionType.mcq,
         },
       ],
@@ -251,11 +206,7 @@ export class DashboardExamComponent {
     },
   ];
 
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private snackbar: SnackbarService
-  ) {}
+  constructor(private router: Router, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.filterExams = this.exams;
@@ -280,6 +231,5 @@ export class DashboardExamComponent {
 
   removeExam(index: number): void {
     this.filterExams.splice(index, 1);
-    this.snackbar.showMessage('Prova removida com sucesso!', true);
   }
 }

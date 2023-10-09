@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService, Login } from '../shared/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SnackbarService } from '../shared/services/snackbar.service';
+import { AuthService } from '../shared/services/auth.service';
+import { LoginInterface } from '../shared/interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private snackbar: SnackbarService
+    private authService: AuthService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -25,15 +25,7 @@ export class LoginComponent {
 
   login(): void {
     if (this.loginForm.valid) {
-      if (
-        this.email?.getRawValue() == 'teste@gmail.com' &&
-        this.password?.getRawValue() == 'teste'
-      ) {
-        this.snackbar.showMessage('Login efetuado com sucesso!', true);
-        this.router.navigate(['admin']);
-      } else {
-        this.snackbar.showMessage('Error ao fazer Login!', false);
-      }
+      this.authService.login(this.loginForm.value as LoginInterface);
     }
   }
 

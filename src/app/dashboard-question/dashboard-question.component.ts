@@ -6,7 +6,6 @@ import {
   Question,
   QuestionType,
 } from '../exam-generator/exam-generator.component';
-import { SnackbarService } from '../shared/services/snackbar.service';
 import { EditQuestionDialogComponent } from '../shared/edit-question-dialog/edit-question-dialog.component';
 
 @Component({
@@ -27,10 +26,6 @@ export class DashboardQuestionComponent {
       difficulty: Difficulty.EASY,
       category: 'Ciência da Computação',
       score: 3,
-      author: {
-        id: 1,
-        name: 'Prof. John Doe',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -42,10 +37,6 @@ export class DashboardQuestionComponent {
       difficulty: Difficulty.EASY,
       category: 'Ciência da Computação',
       score: 1,
-      author: {
-        id: 1,
-        name: 'Prof. John Doe',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -57,10 +48,6 @@ export class DashboardQuestionComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Ciência da Computação',
       score: 3,
-      author: {
-        id: 1,
-        name: 'Prof. John Doe',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -72,19 +59,11 @@ export class DashboardQuestionComponent {
       difficulty: Difficulty.HARD,
       category: 'Ciência da Computação',
       score: 5,
-      author: {
-        id: 1,
-        name: 'Prof. John Doe',
-      },
       type: QuestionType.boolean,
     },
   ];
 
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private snackBar: SnackbarService
-  ) {}
+  constructor(private router: Router, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.filterQuestions = this.questions;
@@ -99,12 +78,8 @@ export class DashboardQuestionComponent {
   }
 
   applyFilter(): void {
-    this.filterQuestions = this.questions.filter(
-      (question) =>
-        question.category.toLowerCase().includes(this.filter.toLowerCase()) ||
-        question.author.name
-          .toLocaleLowerCase()
-          .includes(this.filter.toLowerCase())
+    this.filterQuestions = this.questions.filter((question) =>
+      question.category.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
 
@@ -117,6 +92,5 @@ export class DashboardQuestionComponent {
 
   removeQuestion(index: number): void {
     this.filterQuestions.splice(index, 1);
-    this.snackBar.showMessage('Questão removida com sucesso!', true);
   }
 }

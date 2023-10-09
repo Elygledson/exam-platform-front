@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
 
 export enum QuestionType {
-  boolean = 'Boolean Question',
-  mcq = 'Multiple Choice Question',
-  open = 'Open Question',
+  boolean = 'BOOLEAN',
+  mcq = 'MCQ',
+  open = 'OPEN',
 }
 export interface Question {
   id: number;
@@ -15,7 +15,6 @@ export interface Question {
   difficulty: Difficulty;
   category: string;
   score: number;
-  author: User;
   type?: QuestionType;
 }
 
@@ -62,10 +61,6 @@ export class ExamGeneratorComponent {
       difficulty: Difficulty.EASY,
       category: 'Introdução à Programação',
       score: 2.0,
-      author: {
-        id: 1,
-        name: 'Autor 1',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -77,10 +72,6 @@ export class ExamGeneratorComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Algoritmos e Estruturas de Dados',
       score: 3.0,
-      author: {
-        id: 2,
-        name: 'Autor 2',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -92,10 +83,6 @@ export class ExamGeneratorComponent {
       difficulty: Difficulty.HARD,
       category: 'Banco de Dados e Sistemas de Gerenciamento',
       score: 3.0,
-      author: {
-        id: 2,
-        name: 'Autor 2',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -112,10 +99,6 @@ export class ExamGeneratorComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Redes de Computadores',
       score: 2.5,
-      author: {
-        id: 3,
-        name: 'Autor 3',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -132,10 +115,6 @@ export class ExamGeneratorComponent {
       difficulty: Difficulty.EASY,
       category: 'Engenharia de Software',
       score: 2.0,
-      author: {
-        id: 1,
-        name: 'Autor 1',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -152,10 +131,6 @@ export class ExamGeneratorComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Inteligência Artificial',
       score: 3.0,
-      author: {
-        id: 2,
-        name: 'Autor 2',
-      },
       type: QuestionType.mcq,
     },
   ];

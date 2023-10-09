@@ -24,10 +24,6 @@ export class ExamComponent {
       difficulty: Difficulty.EASY,
       category: 'Introdução à Programação',
       score: 2.0,
-      author: {
-        id: 1,
-        name: 'Autor 1',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -39,10 +35,6 @@ export class ExamComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Algoritmos e Estruturas de Dados',
       score: 3.0,
-      author: {
-        id: 2,
-        name: 'Autor 2',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -54,10 +46,6 @@ export class ExamComponent {
       difficulty: Difficulty.HARD,
       category: 'Banco de Dados e Sistemas de Gerenciamento',
       score: 3.0,
-      author: {
-        id: 2,
-        name: 'Autor 2',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -74,10 +62,6 @@ export class ExamComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Redes de Computadores',
       score: 2.5,
-      author: {
-        id: 3,
-        name: 'Autor 3',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -94,10 +78,6 @@ export class ExamComponent {
       difficulty: Difficulty.EASY,
       category: 'Engenharia de Software',
       score: 2.0,
-      author: {
-        id: 1,
-        name: 'Autor 1',
-      },
       type: QuestionType.mcq,
     },
     {
@@ -114,10 +94,6 @@ export class ExamComponent {
       difficulty: Difficulty.MEDIUM,
       category: 'Inteligência Artificial',
       score: 3.0,
-      author: {
-        id: 2,
-        name: 'Autor 2',
-      },
       type: QuestionType.mcq,
     },
   ];
