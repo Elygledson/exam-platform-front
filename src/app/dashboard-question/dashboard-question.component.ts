@@ -13,6 +13,7 @@ import { DefaultCrudService } from '../shared/services/default-crud.service';
 export class DashboardQuestionComponent {
   filter: string = '';
   filterQuestions: QuestionInterface[] = [];
+  questions: QuestionInterface[] = [];
 
   constructor(
     private crudService: DefaultCrudService,
@@ -23,6 +24,7 @@ export class DashboardQuestionComponent {
   ngOnInit() {
     this.crudService.httpGet('questions').then((response) => {
       this.filterQuestions = response.questions;
+      this.questions = this.filterQuestions;
     });
   }
 
@@ -35,7 +37,7 @@ export class DashboardQuestionComponent {
   }
 
   applyFilter(): void {
-    this.filterQuestions = this.filterQuestions.filter((question) =>
+    this.filterQuestions = this.questions.filter((question) =>
       question.category.toLowerCase().includes(this.filter.toLowerCase())
     );
   }

@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
   styleUrls: ['./confirmation-dialog.component.css'],
 })
 export class ConfirmationDialogComponent {
-  constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<ConfirmationDialogComponent>
+  ) {}
 
   confirm(): void {
     this.dialogRef.close(true);

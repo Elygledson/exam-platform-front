@@ -43,7 +43,7 @@
                 {{ question.difficulty }}
               </button>
             </mat-card-title>
-            <p>{{ question.score }}/10</p>
+            <p>{{ question.score }}/5</p>
           </mat-card-header>
           <mat-card-content class="card-content">
             <div class="question-text">
@@ -93,7 +93,7 @@
                 {{ question.difficulty }}
               </button>
             </mat-card-title>
-            <p>{{ question.score }}/10</p>
+            <p>{{ question.score }}/5</p>
           </mat-card-header>
           <mat-card-content class="card-content">
             <div class="question-text">
@@ -120,8 +120,23 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>Confirmação</ng-template>
-      <div class="export-options"></div>
+      <ng-template matStepLabel> Confirmação </ng-template>
+      <div class="confirmation-content">
+        <mat-form-field class="exam-name-field">
+          <input
+            matInput
+            placeholder="Nome da Prova"
+            [(ngModel)]="examName"
+            name="provaName"
+          />
+        </mat-form-field>
+        <div class="share-button">
+          <a class="share-link" (click)="shareExam()">
+            <mat-icon class="share-icon">share</mat-icon>
+            Compartilhar Prova
+          </a>
+        </div>
+      </div>
     </mat-step>
   </mat-horizontal-stepper>
   <div class="container">

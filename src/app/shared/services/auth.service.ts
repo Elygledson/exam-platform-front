@@ -28,9 +28,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const user = !!localStorage.getItem('user');
-    console.log(user);
-    return user;
+    return !!localStorage.getItem('user');
   }
 
   getToken(): string | null {

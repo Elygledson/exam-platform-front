@@ -6,6 +6,7 @@ import { QuestionInterface } from '../shared/interfaces/question.interface';
 import { DefaultCrudService } from '../shared/services/default-crud.service';
 
 export interface Exam {
+  id?: number;
   author?: string;
   name: string;
   questions: QuestionInterface[];
@@ -22,7 +23,7 @@ export interface Exam {
 export class DashboardExamComponent {
   filter: string = '';
   filterExams: Exam[] = [];
-
+  exams: Exam[] = [];
   constructor(
     private crudService: DefaultCrudService,
     private router: Router,
@@ -31,7 +32,8 @@ export class DashboardExamComponent {
 
   ngOnInit() {
     this.crudService.httpGet('exams').then((response) => {
-      this.filterExams = response.exams;
+      this.exams = response.exams;
+      this.filterExams = this.exams;
     });
   }
 
@@ -40,7 +42,7 @@ export class DashboardExamComponent {
   }
 
   applyFilter(): void {
-    this.filterExams = this.filterExams.filter((exame) =>
+    this.filterExams = this.exams.filter((exame) =>
       exame.name.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
@@ -53,6 +55,8 @@ export class DashboardExamComponent {
   }
 
   removeExam(index: number): void {
-    this.filterExams.splice(index, 1);
+    this.crudService
+      .httpDelete(`exams/${this.filterExams[index].id}`)
+      .then(() => this.filterExams.splice(index, 1));
   }
 }

@@ -1,54 +1,66 @@
 <div class="exam">
-  <mat-card> </mat-card>
-  <form (ngSubmit)="submit()">
-    <div
-      style="margin-bottom: 15px"
-      class="questions"
-      *ngFor="let question of questions"
-    >
-      <mat-card class="card-item">
-        <mat-card-header class="card-header">
-          <mat-card-title class="card-title">
-            Questão {{ question.id }}
-            <button
-              mat-stroked-button
-              [ngClass]="getDifficultyColor(question.difficulty)"
-            >
-              {{ question.difficulty }}
-            </button>
-          </mat-card-title>
-          <p>{{ question.score }}/10</p>
-        </mat-card-header>
-        <mat-card-content class="card-content">
-          <div class="question-text">
-            <p>{{ question.description }}</p>
-          </div>
-          <div class="options">
-            <p>Marque a alternativa correta:</p>
-            <mat-radio-group
-              aria-labelledby="options"
-              class="example-radio-group"
-            >
-              <mat-radio-button
-                color="primary"
-                *ngFor="let option of question.options"
-                [value]="option"
-                [disabled]="submitted"
-                >{{ option }}</mat-radio-button
+  <mat-card class="exam-card">
+    <h2>Formulário de Prova</h2>
+    <form (ngSubmit)="submit()" class="exam-form">
+      <mat-form-field class="name-field">
+        <input
+          matInput
+          placeholder="Seu Nome"
+          [(ngModel)]="userName"
+          name="userName"
+          required
+        />
+      </mat-form-field>
+
+      <div
+        style="margin-bottom: 15px"
+        class="questions"
+        *ngFor="let question of questions; let i = index"
+      >
+        <mat-card class="card-item">
+          <mat-card-header class="card-header">
+            <mat-card-title class="card-title">
+              Questão {{ i + 1 }}
+              <button
+                mat-stroked-button
+                [ngClass]="getDifficultyColor(question.difficulty)"
               >
-            </mat-radio-group>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      <mat-expansion-panel [disabled]="!submitted">
-        <mat-expansion-panel-header>
-          <mat-panel-title>Resposta Correta</mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-panel-description>
-          {{ question.answer }}
-        </mat-panel-description>
-      </mat-expansion-panel>
-    </div>
-    <button type="submit" mat-raised-button color="primary">Enviar</button>
-  </form>
+                {{ question.difficulty }}
+              </button>
+            </mat-card-title>
+            <p>{{ question.score }}/5</p>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            <div class="question-text">
+              <p>{{ question.description }}</p>
+            </div>
+            <div class="options">
+              <p>Marque a alternativa correta:</p>
+              <mat-radio-group
+                aria-labelledby="options"
+                class="example-radio-group"
+              >
+                <mat-radio-button
+                  color="primary"
+                  *ngFor="let option of question.options"
+                  [value]="option"
+                  [disabled]="submitted"
+                  >{{ option }}</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-expansion-panel [disabled]="!submitted">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Resposta Correta</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+            {{ question.answer }}
+          </mat-panel-description>
+        </mat-expansion-panel>
+      </div>
+      <button type="submit" mat-raised-button color="primary">Enviar</button>
+    </form></mat-card
+  >
 </div>

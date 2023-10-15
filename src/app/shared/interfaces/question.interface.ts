@@ -5,9 +5,9 @@ export enum Difficulty {
 }
 
 export enum QuestionType {
-  boolean = 'BOOLEAN',
-  mcq = 'MCQ',
-  open = 'OPEN',
+  BOOLEAN = 'BOOLEAN',
+  MCQ = 'MCQ',
+  OPEN = 'OPEN',
 }
 
 export interface QuestionInterface {

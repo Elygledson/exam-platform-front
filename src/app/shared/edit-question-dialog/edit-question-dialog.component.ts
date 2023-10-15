@@ -23,7 +23,6 @@ export class EditQuestionDialogComponent {
     public dialogRef: MatDialogRef<EditQuestionDialogComponent>,
     private fb: FormBuilder
   ) {
-    console.log(this.data);
     this.question = this.fb.group({
       id: [this.data.id],
       description: [this.data.description],

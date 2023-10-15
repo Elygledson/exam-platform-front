@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
 import { DefaultCrudService } from '../shared/services/default-crud.service';
-import { QuestionInterface } from '../shared/interfaces/question.interface';
+import {
+  QuestionInterface,
+  QuestionType,
+} from '../shared/interfaces/question.interface';
 
 @Component({
   selector: 'app-question',
@@ -15,6 +18,7 @@ export class QuestionGeneratorComponent {
   question: FormGroup;
   selectedOption = '';
   questions: QuestionInterface[] = [];
+  TYPE = QuestionType;
   isLoaded = false;
 
   constructor(
@@ -27,7 +31,8 @@ export class QuestionGeneratorComponent {
       answer: ['', Validators.required],
       difficulty: ['', Validators.required],
       category: ['', Validators.required],
-      score: [0, [Validators.max(5), Validators.required]],
+      score: [1, [Validators.max(5), Validators.required]],
+      type: ['', Validators.required],
     });
   }
 
@@ -35,7 +40,9 @@ export class QuestionGeneratorComponent {
     return (this.question.get('options') as FormArray).controls;
   }
 
-  save(): void {
+  save(type: QuestionType): void {
+    this.question.get('type')?.setValue(type);
+    console.log(this.question.value);
     this.crudService
       .httpPost('questions', this.question.value)
       .then((response) => this.question.reset());

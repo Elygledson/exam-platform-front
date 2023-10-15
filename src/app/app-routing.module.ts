@@ -13,7 +13,6 @@ import { DashboardQuestionComponent } from './dashboard-question/dashboard-quest
 import { QuestionGeneratorComponent } from './question-generator/question-generator.component';
 import { ExamComponent } from './exam/exam.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,9 +26,8 @@ const routes: Routes = [
       { path: 'create-exam', component: ExamGeneratorComponent },
       { path: 'create-question', component: QuestionGeneratorComponent },
     ],
-    canActivate: [AuthGuard],
   },
-  { path: 'exam', component: ExamComponent, canActivate: [AuthGuard] },
+  { path: 'exam/:id', component: ExamComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 @NgModule({

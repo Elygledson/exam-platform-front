@@ -72,3 +72,48 @@
 .example-radio-button {
   margin: 5px;
 }
+
+/* Estilo para o stepper */
+mat-horizontal-stepper {
+  background-color: #f0f0f0; /* Cor de fundo do stepper */
+  padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo para o ícone do passo concluído */
+mat-icon {
+  font-size: 24px;
+  margin-right: 8px;
+  color: #4caf50; /* Cor do ícone quando o passo está concluído */
+}
+
+/* Estilo para o campo de entrada */
+.exam-name-field {
+  width: 100%;
+  margin-bottom: 16px; /* Espaçamento inferior */
+}
+
+/* Estilo para o botão de compartilhamento */
+.share-button {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para o ícone de compartilhamento */
+.share-icon {
+  font-size: 24px;
+  margin-right: 8px;
+  color: #2196f3; /* Cor do ícone de compartilhamento */
+}
+
+/* Estilo para o link de compartilhamento */
+.share-link {
+  text-decoration: none;
+  color: #2196f3; /* Cor do link de compartilhamento */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Estilo para o link de compartilhamento quando hover */
+.share-link:hover {
+  text-decoration: underline;
+}
