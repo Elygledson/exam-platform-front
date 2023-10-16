@@ -15,7 +15,6 @@ export class AuthService {
 
   login(login: LoginInterface): void {
     this.crudService.httpPost('auth/login', login).then((response) => {
-      console.log(response);
       this.userData = response.data;
       localStorage.setItem('user', this.userData);
       localStorage.setItem('jwt', this.userData.token);

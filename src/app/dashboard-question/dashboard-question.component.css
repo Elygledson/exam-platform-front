@@ -102,7 +102,7 @@ mat-toolbar-row {
   align-items: center;
   justify-content: space-between;
   width: 74%;
-  margin-left: 10%;
+  margin-left: 3%;
 }
 
 .column {
@@ -121,7 +121,7 @@ mat-toolbar-row {
   flex: 1;
   padding: 8px;
   border: 1px solid #ccc;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   border-radius: 40px;
   outline: none;
   height: 25px;

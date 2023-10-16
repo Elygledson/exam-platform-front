@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
-import { QuestionInterface } from '../shared/interfaces/question.interface';
+import {
+  QuestionInterface,
+  QuestionType,
+} from '../shared/interfaces/question.interface';
 import { DefaultCrudService } from '../shared/services/default-crud.service';
 import { Exam } from '../dashboard-exam/dashboard-exam.component';
 import { Router } from '@angular/router';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-exam',
@@ -17,6 +22,9 @@ export class ExamGeneratorComponent {
   public selectedStepper = 0;
   public selectedCourse = '';
   public examName = '';
+  public TYPE = QuestionType;
+  inReorderMode = false;
+
   courses = [
     'Introdução à Programação',
     'Algoritmos e Estruturas de Dados',
@@ -55,9 +63,10 @@ export class ExamGeneratorComponent {
 
     dialogRef.afterClosed().subscribe((response) => {
       if (response)
-        this.crudService
-          .httpPost('exams', exam)
-          .then((response) => (this.exam = response.exam));
+        this.crudService.httpPost('exams', exam).then((response) => {
+          this.exam = response.exam;
+          this.shareExam();
+        });
     });
   }
 
@@ -94,8 +103,6 @@ export class ExamGeneratorComponent {
         return '';
     }
   }
-
-  exportAssessment(): void {}
 
   toggleEditMode(): void {}
 }

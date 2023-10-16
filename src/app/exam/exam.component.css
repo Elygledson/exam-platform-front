@@ -1,13 +1,13 @@
 /* Cards de questões */
 
 .card-item {
-  margin-bottom: 20px; /* Espaço entre os cards */
-  border: 1px solid #ccc; /* Borda opcional para os cards */
-  padding: 10px; /* Espaçamento interno nos cards */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 .card:hover {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais intensa ao passar o mouse */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card-header {
@@ -40,7 +40,6 @@
 .exam-card {
   padding: 20px;
   text-align: center;
-  background-color: #f5f5f5;
 }
 
 .exam-form {
@@ -49,17 +48,23 @@
   align-items: center;
 }
 
-.name-field {
+.medium-width {
   width: 65%;
   margin-bottom: 16px;
 }
 
-/* Estilo para os botões */
+.exam {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 65px;
+}
+
 button {
   margin-top: 16px;
 }
 
-/* Estilo para os títulos */
 h2 {
   font-size: 24px;
   margin-bottom: 16px;
@@ -71,4 +76,19 @@ h2 {
 
 .questions {
   width: 65%;
+  margin-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.correct-answer {
+  background-color: #5ad65e !important;
+  width: 100%;
+}
+
+.wrong-answer {
+  background-color: #e36a61 !important;
+  width: 100%;
 }

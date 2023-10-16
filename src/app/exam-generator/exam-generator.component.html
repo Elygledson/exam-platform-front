@@ -49,7 +49,7 @@
             <div class="question-text">
               <p>{{ question.description }}</p>
             </div>
-            <div class="options">
+            <div *ngIf="question.type != TYPE.OPEN" class="options">
               <p>Marque a alternativa correta:</p>
               <mat-radio-group
                 aria-labelledby="options"
@@ -100,8 +100,8 @@
               <p>{{ question.description }}</p>
             </div>
 
-            <div class="options">
-              <p><strong>Marque a alternativa correta:</strong></p>
+            <div *ngIf="question.type != TYPE.OPEN" class="options">
+              <p>Marque a alternativa correta:</p>
               <mat-radio-group
                 aria-labelledby="options"
                 class="example-radio-group"
@@ -125,7 +125,7 @@
         <mat-form-field class="exam-name-field">
           <input
             matInput
-            placeholder="Nome da Prova"
+            placeholder="Título da Prova"
             [(ngModel)]="examName"
             name="provaName"
           />

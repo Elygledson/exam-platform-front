@@ -11,15 +11,15 @@ mat-toolbar-row {
 }
 
 .logo-text {
-  font-size: 28px; /* Tamanho da fonte */
-  font-family: "Comic Sans MS", cursive, sans-serif; /* Escolha uma fonte descontraída */
-  color: #fff; /* Cor do texto */
-  font-weight: bold; /* Peso da fonte (negrito) */
-  text-transform: uppercase; /* Converte o texto para maiúsculas */
-  letter-spacing: 2px; /* Espaçamento entre as letras */
-  padding: 8px 15px; /* Espaçamento interno para tornar o texto arredondado */
-  border-radius: 30px; /* Raio das bordas para criar uma aparência arredondada */
-  margin-right: 20px; /* Margem à direita para separá-lo dos botões */
+  font-size: 28px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 15px;
+  border-radius: 30px;
+  margin-right: 20px;
 }
 
 /* Exams Panel */
@@ -36,14 +36,14 @@ mat-toolbar-row {
 }
 
 .user-profile img {
-  width: 80px; /* Ajuste o tamanho da imagem conforme necessário */
-  height: 80px; /* Ajuste o tamanho da imagem conforme necessário */
-  border-radius: 50%; /* Para criar uma imagem circular */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
 
 .user-profile h2 {
   margin-top: 10px;
-  font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+  font-size: 16px;
 }
 
 .create-exam-button {
@@ -55,18 +55,16 @@ mat-toolbar-row {
 .content {
   padding: 20px;
   flex: 1;
-  background-color: #B3C3FF;
-  /* background-color: #ebf3fa; */
+  background-color: #b3c3ff;
 }
 
-/* Estilo para os cards */
 .exam-card {
-  display: flex; /* Cria um layout em linha para as informações */
-  background-color: #fff; /* Cor de fundo do card */
-  border: 1px solid #ccc; /* Borda ao redor do card */
-  border-radius: 5px; /* Borda arredondada */
-  margin-bottom: 10px; /* Espaço entre os cards */
-  padding: 10px; /* Espaçamento interno do card */
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
   height: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -80,23 +78,20 @@ mat-toolbar-row {
   transition: transform 0.2s;
 }
 
-/* Estilo para cada informação dentro do card */
 .exam-card .exam-details {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-evenly; /* Adiciona espaçamento igual entre as informações */
+  justify-content: space-evenly;
   width: 100%;
 }
 
-/* Estilo para o nome da prova */
 .exam-name {
   word-break: break-all;
   width: 300px;
   font-size: 18px;
 }
 
-/* Estilo para a data de criação */
 .exam-date {
   word-break: break-all;
   width: 300px;
@@ -104,7 +99,6 @@ mat-toolbar-row {
   margin-right: 10px;
 }
 
-/* Estilo para a disciplina */
 .exam-discipline {
   word-break: break-all;
   width: 300px;

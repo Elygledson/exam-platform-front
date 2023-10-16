@@ -27,25 +27,17 @@ export class QuestionGeneratorComponent {
   ) {
     this.question = this.fb.group({
       description: ['', Validators.required],
-      options: this.fb.array([]),
+      options: new FormArray([]),
       answer: ['', Validators.required],
       difficulty: ['', Validators.required],
       category: ['', Validators.required],
-      score: [1, [Validators.max(5), Validators.required]],
+      score: [1, [Validators.min(1), Validators.max(5), Validators.required]],
       type: ['', Validators.required],
     });
   }
 
   get optionControls() {
     return (this.question.get('options') as FormArray).controls;
-  }
-
-  save(type: QuestionType): void {
-    this.question.get('type')?.setValue(type);
-    console.log(this.question.value);
-    this.crudService
-      .httpPost('questions', this.question.value)
-      .then((response) => this.question.reset());
   }
 
   addOption() {
@@ -56,6 +48,20 @@ export class QuestionGeneratorComponent {
   removeOption(index: number) {
     const optionsArray = this.question.get('options') as FormArray;
     optionsArray.removeAt(index);
+  }
+
+  save(type: QuestionType): void {
+    if (type === this.TYPE.BOOLEAN) {
+      const optionsArray = this.question.get('options') as FormArray;
+      optionsArray.clear();
+
+      optionsArray.push(this.fb.control('Sim'));
+      optionsArray.push(this.fb.control('Não'));
+    }
+    this.question.get('type')?.setValue(type);
+    this.crudService
+      .httpPost('questions', this.question.value)
+      .then((response) => this.question.reset());
   }
 
   generateQuestions(): void {}

@@ -1,66 +1,84 @@
 <div class="exam">
-  <mat-card class="exam-card">
-    <h2>Formulário de Prova</h2>
-    <form (ngSubmit)="submit()" class="exam-form">
-      <mat-form-field class="name-field">
-        <input
-          matInput
-          placeholder="Seu Nome"
-          [(ngModel)]="userName"
-          name="userName"
-          required
-        />
-      </mat-form-field>
+  <h2>Formulário de Prova</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="exam-form">
+    <mat-form-field class="medium-width">
+      <input matInput formControlName="name" placeholder="Nome" required />
+    </mat-form-field>
 
-      <div
-        style="margin-bottom: 15px"
-        class="questions"
-        *ngFor="let question of questions; let i = index"
-      >
-        <mat-card class="card-item">
-          <mat-card-header class="card-header">
-            <mat-card-title class="card-title">
-              Questão {{ i + 1 }}
-              <button
-                mat-stroked-button
-                [ngClass]="getDifficultyColor(question.difficulty)"
+    <div class="questions" *ngFor="let question of questions; let i = index">
+      <mat-card class="card-item">
+        <mat-card-header class="card-header">
+          <mat-card-title class="card-title">
+            Questão {{ i + 1 }}
+            <button
+              mat-stroked-button
+              [ngClass]="getDifficultyColor(question.difficulty)"
+            >
+              {{ question.difficulty }}
+            </button>
+          </mat-card-title>
+          <p>{{ question.score }}/5</p>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          <div class="question-text">
+            <p>{{ question.description }}</p>
+          </div>
+          <ng-container
+            *ngIf="question.type !== TYPE.OPEN; else openQuestion"
+            class="options"
+          >
+            <p>Marque a alternativa correta:</p>
+            <mat-radio-group
+              aria-labelledby="options"
+              class="example-radio-group"
+            >
+              <mat-radio-button
+                color="primary"
+                *ngFor="let option of question.options; let j = index"
+                [ngClass]="{
+                  'correct-answer': submitted && question.answerIndex == j,
+                  'wrong-answer':
+                    submitted &&
+                    !question.userOption.isCorrect &&
+                    question.userOption.choosen == j
+                }"
+                [value]="option"
+                (change)="onAnswerSelected(i, j, $event.value)"
+                [disabled]="submitted"
+                >{{ option }}</mat-radio-button
               >
-                {{ question.difficulty }}
-              </button>
-            </mat-card-title>
-            <p>{{ question.score }}/5</p>
-          </mat-card-header>
-          <mat-card-content class="card-content">
-            <div class="question-text">
-              <p>{{ question.description }}</p>
-            </div>
-            <div class="options">
-              <p>Marque a alternativa correta:</p>
-              <mat-radio-group
-                aria-labelledby="options"
-                class="example-radio-group"
-              >
-                <mat-radio-button
-                  color="primary"
-                  *ngFor="let option of question.options"
-                  [value]="option"
-                  [disabled]="submitted"
-                  >{{ option }}</mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-expansion-panel [disabled]="!submitted">
-          <mat-expansion-panel-header>
-            <mat-panel-title>Resposta Correta</mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-panel-description>
-            {{ question.answer }}
-          </mat-panel-description>
-        </mat-expansion-panel>
-      </div>
-      <button type="submit" mat-raised-button color="primary">Enviar</button>
-    </form></mat-card
-  >
+            </mat-radio-group>
+          </ng-container>
+
+          <ng-template #openQuestion>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Sua Resposta"
+                [(ngModel)]="answer"
+                name="userName"
+                required
+              />
+            </mat-form-field>
+          </ng-template>
+        </mat-card-content>
+      </mat-card>
+      <mat-expansion-panel [disabled]="!submitted">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Resposta Correta</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{ question.answer }}
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </div>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Enviar
+    </button>
+  </form>
 </div>
