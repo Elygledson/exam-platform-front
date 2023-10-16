@@ -12,17 +12,18 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <h1 style="margin-left: 24px">
+  <h1 style="font-weight: 600;">
     {{ selectedCourse || courses[0] }}
   </h1>
 
   <mat-horizontal-stepper
     [linear]="true"
+    style="background-color: #e5e5e5; border-radius: 40px;"
     #stepper
     (selectionChange)="stepperSelectionChange($event)"
   >
-    <mat-step>
-      <ng-template matStepLabel>Seleção de Questões</ng-template>
+    <mat-step >
+      <ng-template matStepLabel >Seleção de Questões</ng-template>
 
       <div style="margin-bottom: 15px" *ngFor="let question of questions">
         <mat-card class="card-item">
@@ -38,6 +39,7 @@
               Questão {{ question.id }}
               <button
                 mat-stroked-button
+                style="border-radius: 40px; margin-left: 20px;"
                 [ngClass]="getDifficultyColor(question.difficulty)"
               >
                 {{ question.difficulty }}
@@ -65,7 +67,7 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-expansion-panel>
+        <mat-expansion-panel style="border-radius: 20px;">
           <mat-expansion-panel-header>
             <mat-panel-title>Resposta Correta</mat-panel-title>
           </mat-expansion-panel-header>
