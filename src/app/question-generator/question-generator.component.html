@@ -203,16 +203,16 @@
       <mat-card-content *ngIf="selectedOption == 'video'">
         <form
           class="example-form"
-          (submit)="generateQuestions()"
+          (submit)="generateQuestions(QuestionFrom.URL)"
           #form="ngForm"
         >
           <mat-form-field class="example-full-width">
             <mat-label>URL</mat-label>
             <input
               matInput
+              [(ngModel)]="url"
               placeholder="URL do video"
               name="url"
-              ngModel
               required
             />
           </mat-form-field>
@@ -226,16 +226,68 @@
           </button>
         </form></mat-card-content
       >
+      <ng-container *ngIf="isLoaded; else loading">
+        <form
+          class="questions"
+          (submit)="saveGeneratedQuestion()"
+          #form="ngForm"
+        >
+          <div *ngFor="let question of questions; let i = index">
+            <mat-form-field class="full-width">
+              <mat-label>Descrição {{ i }}</mat-label>
+              <textarea
+                matInput
+                placeholder="Descrição"
+                id="input-description-{{ i }}"
+                name="description-{{ i }}"
+                [(ngModel)]="questions[i].description"
+                required
+              ></textarea>
+            </mat-form-field>
+            <div *ngFor="let option of question.options; let j = index">
+              <mat-form-field class="full-width">
+                <mat-label>Opção</mat-label>
+                <input
+                  matInput
+                  placeholder="Opção"
+                  id="input-option-{{ j }}"
+                  name="option-{{ j }}"
+                  [(ngModel)]="questions[i].options[j]"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <mat-form-field class="full-width">
+              <mat-label>Resposta Correta</mat-label>
+              <input
+                matInput
+                placeholder="Resposta Correta"
+                id="input-answer-{{ i }}"
+                name="answer-{{ i }}"
+                [(ngModel)]="questions[i].answer"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary">Salvar</button>
+        </form>
+      </ng-container>
+      <ng-template #loading>
+        <div class="spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
       <mat-card-content *ngIf="selectedOption == 'text'">
         <form
           class="example-form"
-          (submit)="generateQuestions()"
+          (submit)="generateQuestions(QuestionFrom.TEXT)"
           #form="ngForm"
         >
           <mat-form-field class="example-full-width">
             <mat-label>Texto</mat-label>
             <textarea
               matInput
+              [(ngModel)]="text"
               placeholder="Adicione um texto"
               name="texto"
               ngModel
@@ -251,52 +303,6 @@
             Gerar Questões
           </button>
         </form>
-        <ng-container *ngIf="!isLoaded; else loading">
-          <form class="questions" (submit)="generateQuestions()" #form="ngForm">
-            <div *ngFor="let question of questions; let i = index">
-              <mat-form-field class="full-width">
-                <mat-label>Descrição {{ i }}</mat-label>
-                <textarea
-                  matInput
-                  placeholder="Descrição"
-                  id="input-description-{{ i }}"
-                  name="description-{{ i }}"
-                  [(ngModel)]="questions[i].description"
-                  required
-                ></textarea>
-              </mat-form-field>
-              <div *ngFor="let option of question.options; let j = index">
-                <mat-form-field class="full-width">
-                  <mat-label>Opção</mat-label>
-                  <input
-                    matInput
-                    placeholder="Opção"
-                    id="input-option-{{ j }}"
-                    name="option-{{ j }}"
-                    [(ngModel)]="questions[i].options[j]"
-                    required
-                  />
-                </mat-form-field>
-              </div>
-              <mat-form-field class="full-width">
-                <mat-label>Resposta Correta</mat-label>
-                <input
-                  matInput
-                  placeholder="Resposta Correta"
-                  id="input-answer-{{ i }}"
-                  name="answer-{{ i }}"
-                  [(ngModel)]="questions[i].answer"
-                  required
-                />
-              </mat-form-field>
-            </div>
-          </form>
-        </ng-container>
-        <ng-template #loading>
-          <div class="spinner">
-            <mat-spinner></mat-spinner>
-          </div>
-        </ng-template>
       </mat-card-content>
     </mat-card>
   </div>

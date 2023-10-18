@@ -33,6 +33,7 @@ export class ExamComponent {
   public userName = '';
   public answer = '';
   questions: UsersAnswers[] = [];
+  public corrects = 0;
   TYPE = QuestionType;
 
   constructor(
@@ -99,7 +100,14 @@ export class ExamComponent {
     });
 
     dialogRef.afterClosed().subscribe((response) => {
-      if (response) this.submitted = response;
+      if (response) {
+        this.submitted = response;
+        this.questions.forEach((question: UsersAnswers) => {
+          if (question.userOption.isCorrect == true) {
+            this.corrects += 1;
+          }
+        });
+      }
     });
   }
 }

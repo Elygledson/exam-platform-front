@@ -59,6 +59,8 @@
   flex-direction: column;
   text-align: center;
   padding: 65px;
+  height: 100%;
+  background-color: #b3c3ff;
 }
 
 button {

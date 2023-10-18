@@ -155,6 +155,62 @@ export class DefaultCrudService {
     });
   }
 
+  httpPostAutomatedQuestions(endPoint: string, data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const url = `http://127.0.0.1:8000/api/${endPoint}`;
+      console.log(url);
+      this.http.post(url, data).subscribe(
+        (res: any) => {
+          if (res) {
+            this.snackBar.openFromComponent(SnackbarComponent, {
+              duration: 8000,
+              horizontalPosition: 'right',
+              verticalPosition: 'top',
+              panelClass: ['mat-toolbar', 'snackbar-success'],
+              data: { message: res.message },
+            });
+          }
+          resolve(res);
+        },
+        (rej: HttpErrorResponse) => {
+          let errorMessage =
+            'Algum erro interno ocorreu, por favor tente mais tarde!';
+
+          if (Array.isArray(rej.error)) {
+            for (const errItem of rej.error) {
+              this.snackBar.openFromComponent(SnackbarComponent, {
+                duration: 8000,
+                horizontalPosition: 'right',
+                verticalPosition: 'top',
+                panelClass: ['mat-toolbar', 'snackbar-danger'],
+                data: { message: errItem.message },
+              });
+            }
+            reject(rej);
+            return;
+          }
+
+          if (rej.error.message !== undefined) {
+            errorMessage = rej.error.message;
+          }
+
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 8000,
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            panelClass: ['mat-toolbar', 'snackbar-danger'],
+            data: {
+              message: Array.isArray(errorMessage)
+                ? errorMessage[0]
+                : errorMessage,
+            },
+          });
+          reject(rej);
+        }
+      );
+    });
+  }
+
   httpPatch(endPoint: string, data: any, dynamicUrl?: string): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = this.getFullEndPoint(endPoint, dynamicUrl);

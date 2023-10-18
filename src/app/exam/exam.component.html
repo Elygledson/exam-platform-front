@@ -63,15 +63,10 @@
           </ng-template>
         </mat-card-content>
       </mat-card>
-      <mat-expansion-panel [disabled]="!submitted">
-        <mat-expansion-panel-header>
-          <mat-panel-title>Resposta Correta</mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-panel-description>
-          {{ question.answer }}
-        </mat-panel-description>
-      </mat-expansion-panel>
     </div>
+    <mat-card>
+      <mat-card-content>{{ corrects }}/{{ questions.length }}</mat-card-content>
+    </mat-card>
     <button
       type="submit"
       mat-raised-button

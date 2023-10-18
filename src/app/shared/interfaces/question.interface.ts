@@ -10,6 +10,11 @@ export enum QuestionType {
   OPEN = 'OPEN',
 }
 
+export enum QuestionFrom {
+  URL = 'url',
+  TEXT = 'text',
+}
+
 export interface QuestionInterface {
   id: number;
   description: string;

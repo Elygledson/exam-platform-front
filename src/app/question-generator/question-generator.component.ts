@@ -4,9 +4,17 @@ import { MatAccordion } from '@angular/material/expansion';
 
 import { DefaultCrudService } from '../shared/services/default-crud.service';
 import {
+  Difficulty,
+  QuestionFrom,
   QuestionInterface,
   QuestionType,
 } from '../shared/interfaces/question.interface';
+
+interface Question {
+  description: string;
+  options: string;
+  answer: string;
+}
 
 @Component({
   selector: 'app-question',
@@ -19,7 +27,10 @@ export class QuestionGeneratorComponent {
   selectedOption = '';
   questions: QuestionInterface[] = [];
   TYPE = QuestionType;
-  isLoaded = false;
+  QuestionFrom = QuestionFrom;
+  url = '';
+  text = '';
+  isLoaded = true;
 
   constructor(
     private fb: FormBuilder,
@@ -64,5 +75,55 @@ export class QuestionGeneratorComponent {
       .then((response) => this.question.reset());
   }
 
-  generateQuestions(): void {}
+  saveGeneratedQuestion(): void {
+    console.log(this.questions);
+    this.crudService.httpPost('questions', this.questions);
+  }
+
+  generateQuestions(questionFrom: QuestionFrom): void {
+    this.isLoaded = false;
+    if (questionFrom === QuestionFrom.URL) {
+      this.crudService
+        .httpPostAutomatedQuestions('transcription/questions', {
+          content: this.url,
+          type: 'multiple_choice',
+          num: 5,
+        })
+        .then((response) => {
+          this.questions = response.questions.map((question: Question) => {
+            return {
+              description: question.description,
+              options: question.options.split('\n'),
+              answer: question.answer,
+              category: 'teste',
+              difficulty: Difficulty.EASY,
+              type: QuestionType.MCQ,
+              score: 1,
+            } as QuestionInterface;
+          });
+        })
+        .finally(() => (this.isLoaded = true));
+    } else {
+      this.crudService
+        .httpPostAutomatedQuestions('text/questions', {
+          content: this.text,
+          type: 'multiple_choice',
+          num: 4,
+        })
+        .then((response) => {
+          this.questions = response.questions.map((question: Question) => {
+            return {
+              description: question.description,
+              options: question.options.split('\n'),
+              answer: question.answer,
+              category: 'teste',
+              difficulty: Difficulty.EASY,
+              type: QuestionType.MCQ,
+              score: 1,
+            } as QuestionInterface;
+          });
+        })
+        .finally(() => (this.isLoaded = true));
+    }
+  }
 }
