@@ -19,6 +19,7 @@ import { EditQuestionDialogComponent } from './shared/edit-question-dialog/edit-
 import { QuestionGeneratorComponent } from './question-generator/question-generator.component';
 import { ExamComponent } from './exam/exam.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { ExamSubmissionComponent } from './exam-submission/exam-submission.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     EditQuestionDialogComponent,
     ExamComponent,
     SnackbarComponent,
+    ExamSubmissionComponent,
   ],
   imports: [
     BrowserModule,
