@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-exam-submission',
@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./exam-submission.component.css']
 })
 export class ExamSubmissionComponent {
+  filter: string = '';
+  @Input() id!: number;
+
+  getStarArray(numStars: number): any[] {
+    return [1]
+  }
+  getStarArray1(): void {
+    
+  }
+  applyFilter(): void {
+    
+  }
 
 }

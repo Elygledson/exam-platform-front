@@ -1,0 +1,220 @@
+mat-toolbar-row {
+    padding: 60px 30px;
+  }
+  
+  .buttons {
+    display: flex;
+    width: 195px;
+    justify-content: space-between;
+  }
+  
+  /* Exams Panel */
+  
+  .sidenav {
+    width: 250px;
+    background-color: #ffffff;
+  }
+  
+  .create-exam-button {
+    width: 20%;
+    border-radius: 9px;
+    margin-top: 20px;
+  }
+  
+  .content {
+    padding: 20px;
+    flex: 1;
+    background-color: #d9d9d9;
+    /* background-color: #ebf3fa; */
+  }
+  
+  /* Estilo para os cards */
+  .exam-card {
+    display: flex; /* Cria um layout em linha para as informações */
+    background-color: #44009d74; /* Cor de fundo do card */
+    border: 1px solid #44009d; /* Borda ao redor do card */
+    margin-bottom: 18px; /* Espaço entre os cards */
+    padding: 15px; /* Espaçamento interno do card */
+    padding-left: 40px;
+    padding-right: 20px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border-radius: 40px;
+  }
+  .exam-card:hover {
+    transform: scale(1);
+  }
+  
+  .exam-card {
+    transition: transform 0.2s;
+  }
+  
+  /* Estilo para cada informação dentro do card */
+  .exam-card .exam-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* Adiciona espaçamento igual entre as informações */
+    width: 100%;
+  }
+  
+  /* Estilo para o nome da prova */
+  .exam-name {
+    word-break: break-all;
+    width: 300px;
+    color: white;
+  }
+  
+  /* Estilo para a data de criação */
+  .exam-date {
+    word-break: break-all;
+    width: 300px;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  /* Estilo para a disciplina */
+  .exam-discipline {
+    word-break: break-all;
+    width: 40%;
+    color: white;
+  }
+  
+  .container {
+    height: 100%;
+  }
+  
+  .exams-container {
+    margin-top: 5%;
+    height: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  
+  .edit-button {
+    color: #71269e !important;
+  }
+  
+  .exam-header {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 74%;
+    margin-left: 3%;
+  }
+  
+  .column {
+    font-weight: 500;
+    color: white;
+  }
+  
+  /* Estilo para o campo de filtro */
+  .filter-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .filter-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #e5e5e5;
+    border-radius: 40px;
+    outline: none;
+    height: 25px;
+  }
+  
+  .filter-input {
+    width: 40%;
+  }
+  
+  .search-icon {
+    position: relative;
+    margin-left: -32px;
+    opacity: 0.1;
+  }
+  
+  ::ng-deep.mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    justify-content: space-between;
+  }
+  
+  .filter-card {
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: auto;
+    justify-content: space-between;
+  }
+  
+  /* Estilo para o contêiner dos cartões */
+  .metrics-card {
+    display: flex;
+    justify-content: space-around; /* Alinha os cartões horizontalmente com espaçamento uniforme */
+    align-items: center; /* Alinha os cartões verticalmente ao centro */
+    margin-top: 20px;
+  }
+  
+  /* Estilo para cada cartão individual */
+  .metric-card {
+    width: 200px; /* Largura do cartão */
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  /* Estilo para o título do cartão */
+  .mat-card-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para o texto do cartão (por exemplo, "Provas Feitas") */
+  .mat-card-content p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .button {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter {
+    padding-bottom: 40px;
+  }
+  
+  .exam-id {
+    word-break: break-all;
+    width: 300px;
+    color: #777;
+  }
+  
+  .question {
+    word-break: break-all;
+    width: 300px;
+    color: #777;
+  }
+  
+  .star {
+    color: rgb(54, 219, 114);
+  }
+  
