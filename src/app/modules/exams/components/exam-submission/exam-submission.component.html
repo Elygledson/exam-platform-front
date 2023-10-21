@@ -1,0 +1,39 @@
+<div class="exams-container">
+    <div class="filter">
+      <div style="display: flex; gap: 40%">
+        <div class="filter-input">
+          <input
+            type="text"
+            placeholder="Filtrar"
+            [(ngModel)]="filter"
+          (input)="applyFilter()"
+            
+          />
+          <mat-icon class="search-icon">search</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="exam-header">
+      <div class="column" >Matricula</div>
+      <div class="column" style="padding-left: 15vw;" >Aluno</div>
+      <div class="column" style="padding-left: 12vw;">Resultado</div>
+      <div class="column" style="padding-left: 12vw;" >Pontuação</div>
+    </div>
+    <div style="height: 20px"></div>
+    <div
+      class="exam-card"
+      *ngFor="let question of [1,2,3]; let i = index"
+    >
+      <div class="exam-details">
+        <div class="exam-discipline">{{ '18218294' }}</div>
+        <div class="exam-discipline">José Carlos Silveira</div>
+        <div class="exam-discipline">{{ ['dificuldade'] }}</div>
+        <div class="exam-discipline">
+          <ng-container *ngFor="let star of getStarArray(1)">
+            <div class="exam-discipline">9/10</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  

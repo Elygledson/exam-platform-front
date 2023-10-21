@@ -13,6 +13,7 @@ import { DashboardQuestionComponent } from './modules/dashboard/components/dashb
 import { QuestionGeneratorComponent } from './modules/questions/components/question-generator/question-generator.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { ExamComponent } from './modules/exams/exam.component';
+import { ExamSubmissionComponent } from './modules/exams/components/exam-submission/exam-submission.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,10 +25,12 @@ const routes: Routes = [
       { path: '', component: DashboardExamComponent },
       { path: 'questions', component: DashboardQuestionComponent },
       { path: 'create-exam', component: ExamGeneratorComponent },
+      { path: 'exam-submission', component: ExamSubmissionComponent },
       { path: 'create-question', component: QuestionGeneratorComponent },
     ],
   },
   { path: 'exam/:id', component: ExamComponent },
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 @NgModule({

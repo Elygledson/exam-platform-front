@@ -14,7 +14,6 @@ import { ExamsModule } from './modules/exams/exams.module';
 import { QuestionsModule } from './modules/questions/questions.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { AutenticationModule } from './authentication/autentication.module';
-import { ExamSubmissionComponent } from './exam-submission/exam-submission.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { ExamSubmissionComponent } from './exam-submission/exam-submission.compo
     ConfirmationDialogComponent,
     AdminComponent,
     SnackbarComponent,
-    ExamSubmissionComponent,
   ],
   imports: [
     BrowserModule,
