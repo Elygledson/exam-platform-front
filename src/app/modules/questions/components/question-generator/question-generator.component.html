@@ -169,7 +169,7 @@
               mat-mini-fab
               color="primary"
               aria-label="botão de adicionar conteúdo"
-              (click)="selectedOption = 'text'"
+              (click)="changeGenerationType(QuestionFrom.TEXT)"
             >
               <mat-icon>add</mat-icon>
             </button></mat-card-subtitle
@@ -188,7 +188,7 @@
               mat-mini-fab
               color="primary"
               aria-label="botão de adicionar conteúdo"
-              (click)="selectedOption = 'video'"
+              (click)="changeGenerationType(QuestionFrom.URL)"
             >
               <mat-icon>add</mat-icon>
             </button></mat-card-subtitle
@@ -200,7 +200,7 @@
   </div>
   <div class="view-questions">
     <mat-card *ngIf="selectedOption" class="content">
-      <mat-card-content *ngIf="selectedOption == 'video'">
+      <mat-card-content *ngIf="selectedOption == QuestionFrom.URL">
         <form
           class="example-form"
           (submit)="generateQuestions(QuestionFrom.URL)"
@@ -226,6 +226,33 @@
           </button>
         </form></mat-card-content
       >
+      <mat-card-content *ngIf="selectedOption == QuestionFrom.TEXT">
+        <form
+          class="example-form"
+          (submit)="generateQuestions(QuestionFrom.TEXT)"
+          #form="ngForm"
+        >
+          <mat-form-field class="example-full-width">
+            <mat-label>Texto</mat-label>
+            <textarea
+              matInput
+              [(ngModel)]="text"
+              placeholder="Adicione um texto"
+              name="texto"
+              ngModel
+              required
+            ></textarea>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Gerar Questões
+          </button>
+        </form>
+      </mat-card-content>
       <ng-container *ngIf="isLoaded; else loading">
         <form
           class="questions"
@@ -277,33 +304,6 @@
           <mat-spinner></mat-spinner>
         </div>
       </ng-template>
-      <mat-card-content *ngIf="selectedOption == 'text'">
-        <form
-          class="example-form"
-          (submit)="generateQuestions(QuestionFrom.TEXT)"
-          #form="ngForm"
-        >
-          <mat-form-field class="example-full-width">
-            <mat-label>Texto</mat-label>
-            <textarea
-              matInput
-              [(ngModel)]="text"
-              placeholder="Adicione um texto"
-              name="texto"
-              ngModel
-              required
-            ></textarea>
-          </mat-form-field>
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!form.valid"
-          >
-            Gerar Questões
-          </button>
-        </form>
-      </mat-card-content>
     </mat-card>
   </div>
 </div>

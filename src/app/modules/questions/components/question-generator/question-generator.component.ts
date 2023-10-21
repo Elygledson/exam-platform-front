@@ -1,5 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
 import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
@@ -37,13 +43,17 @@ export class QuestionGeneratorComponent {
     private crudService: DefaultCrudService
   ) {
     this.question = this.fb.group({
-      description: ['', Validators.required],
+      description: new FormControl('', [Validators.required]),
       options: new FormArray([]),
-      answer: ['', Validators.required],
-      difficulty: ['', Validators.required],
-      category: ['', Validators.required],
-      score: [1, [Validators.min(1), Validators.max(5), Validators.required]],
-      type: ['', Validators.required],
+      answer: new FormControl('', [Validators.required]),
+      difficulty: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
+      score: new FormControl(1, [
+        Validators.min(1),
+        Validators.max(5),
+        Validators.required,
+      ]),
+      type: new FormControl('', [Validators.required]),
     });
   }
 
@@ -75,6 +85,13 @@ export class QuestionGeneratorComponent {
       .then((response) => this.question.reset());
   }
 
+  changeGenerationType(type: QuestionFrom): void {
+    if (type !== this.selectedOption) {
+      this.questions = [];
+      this.selectedOption = type;
+    }
+  }
+
   saveGeneratedQuestion(): void {
     this.crudService.httpPost('questions', this.questions);
   }
@@ -82,6 +99,18 @@ export class QuestionGeneratorComponent {
   generateQuestions(questionFrom: QuestionFrom): void {
     this.isLoaded = false;
     if (questionFrom === QuestionFrom.URL) {
+      this.questions = [
+        {
+          id: 1,
+          description: 'question.description',
+          options: ['e', 'e', 'e', 'e'],
+          answer: 'question.answer',
+          category: 'teste',
+          difficulty: Difficulty.EASY,
+          type: QuestionType.MCQ,
+          score: 1,
+        },
+      ];
       this.crudService
         .httpPostAutomatedQuestions('transcription/questions', {
           content: this.url,
@@ -103,6 +132,18 @@ export class QuestionGeneratorComponent {
         })
         .finally(() => (this.isLoaded = true));
     } else {
+      this.questions = [
+        {
+          id: 1,
+          description: 'question.description',
+          options: ['e', 'e', 'e', 'e'],
+          answer: 'question.answer',
+          category: 'teste',
+          difficulty: Difficulty.EASY,
+          type: QuestionType.MCQ,
+          score: 1,
+        },
+      ];
       this.crudService
         .httpPostAutomatedQuestions('text/questions', {
           content: this.text,

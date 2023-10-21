@@ -12,8 +12,16 @@ import { Exam } from '../../../exams/interfaces/exam.interface';
 })
 export class DashboardExamComponent {
   filter: string = '';
-  filterExams: Exam[] = [];
   exams: Exam[] = [];
+  filterExams: Exam[] = [
+    {
+      id: 1,
+      author: 'teste',
+      name: 'teste',
+      questions: [],
+    },
+  ];
+
   constructor(
     private crudService: DefaultCrudService,
     private router: Router,
@@ -29,6 +37,10 @@ export class DashboardExamComponent {
 
   navigateToCreateExam(): void {
     this.router.navigate(['admin', 'create-exam']);
+  }
+
+  checkSubmissions(): void {
+    this.router.navigate(['admin/exam-submission']);
   }
 
   applyFilter(): void {
