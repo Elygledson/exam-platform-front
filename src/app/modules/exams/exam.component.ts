@@ -1,13 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { DefaultCrudService } from 'src/app/shared/services/default-crud.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import {
   Difficulty,
   QuestionInterface,
   QuestionType,
-} from '../shared/interfaces/question.interface';
-import { DefaultCrudService } from '../shared/services/default-crud.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+} from '../questions/interfaces/question.interface';
 
 export interface UsersAnswers {
   description: string;
@@ -34,7 +40,7 @@ export class ExamComponent {
   public answer = '';
   questions: UsersAnswers[] = [];
   public corrects = 0;
-  TYPE = QuestionType;
+  type = QuestionType;
 
   constructor(
     public dialog: MatDialog,
@@ -42,13 +48,14 @@ export class ExamComponent {
     private crudService: DefaultCrudService
   ) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
+      name: new FormControl('', [Validators.required]),
+      studentRegistrationCode: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit() {
     if (this.id)
-      this.crudService.httpGet(`exams/${this.id}`).then((response) => {
+      this.crudService.httpGet(`exams/${this.id}`).then((response: any) => {
         this.questions = response.exam.questions.map(
           (question: QuestionInterface) => {
             return {

@@ -2,13 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
-import { DefaultCrudService } from '../shared/services/default-crud.service';
+import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
 import {
   Difficulty,
   QuestionFrom,
   QuestionInterface,
   QuestionType,
-} from '../shared/interfaces/question.interface';
+} from '../../interfaces/question.interface';
 
 interface Question {
   description: string;
@@ -76,7 +76,6 @@ export class QuestionGeneratorComponent {
   }
 
   saveGeneratedQuestion(): void {
-    console.log(this.questions);
     this.crudService.httpPost('questions', this.questions);
   }
 

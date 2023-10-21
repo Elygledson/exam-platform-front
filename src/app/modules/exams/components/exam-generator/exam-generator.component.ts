@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../../../shared/confirmation-dialog/confirmation-dialog.component';
+import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
+import { Router } from '@angular/router';
+import { Exam } from '../../interfaces/exam.interface';
 import {
   QuestionInterface,
   QuestionType,
-} from '../shared/interfaces/question.interface';
-import { DefaultCrudService } from '../shared/services/default-crud.service';
-import { Exam } from '../dashboard-exam/dashboard-exam.component';
-import { Router } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+} from 'src/app/modules/questions/interfaces/question.interface';
 
 @Component({
   selector: 'app-exam',

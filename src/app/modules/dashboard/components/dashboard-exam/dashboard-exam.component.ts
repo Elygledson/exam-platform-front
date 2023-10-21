@@ -1,19 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { EditExamDialogComponent } from '../shared/edit-exam-dialog/edit-exam-dialog.component';
+import { EditExamDialogComponent } from '../../../exams/components/edit-exam-dialog/edit-exam-dialog.component';
 import { Router } from '@angular/router';
-import { QuestionInterface } from '../shared/interfaces/question.interface';
-import { DefaultCrudService } from '../shared/services/default-crud.service';
-
-export interface Exam {
-  id?: number;
-  author?: string;
-  name: string;
-  questions: QuestionInterface[];
-  createdAt?: Date;
-  updatedAt?: Date;
-  deleteAt?: Date;
-}
+import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
+import { Exam } from '../../../exams/interfaces/exam.interface';
 
 @Component({
   selector: 'app-dashboard-exam',

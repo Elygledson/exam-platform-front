@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { EditQuestionDialogComponent } from '../shared/edit-question-dialog/edit-question-dialog.component';
-import { QuestionInterface } from '../shared/interfaces/question.interface';
-import { DefaultCrudService } from '../shared/services/default-crud.service';
+import { EditQuestionDialogComponent } from '../../../questions/components/edit-question-dialog/edit-question-dialog.component';
+import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
+import { QuestionInterface } from '../../../questions/interfaces/question.interface';
 
 @Component({
   selector: 'app-dashboard-question',

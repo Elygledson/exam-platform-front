@@ -1,9 +1,20 @@
 <div class="exam">
   <h2>Formulário de Prova</h2>
   <form [formGroup]="form" (ngSubmit)="submit()" class="exam-form">
-    <mat-form-field class="medium-width">
-      <input matInput formControlName="name" placeholder="Nome" required />
-    </mat-form-field>
+    <div class="exam-header">
+      <mat-form-field class="medium-width">
+        <input matInput formControlName="name" placeholder="Nome" required />
+      </mat-form-field>
+
+      <mat-form-field class="small-width">
+        <input
+          matInput
+          formControlName="studentRegistrationCode"
+          placeholder="Nº Matrícula"
+          required
+        />
+      </mat-form-field>
+    </div>
 
     <div class="questions" *ngFor="let question of questions; let i = index">
       <mat-card class="card-item">
@@ -24,7 +35,7 @@
             <p>{{ question.description }}</p>
           </div>
           <ng-container
-            *ngIf="question.type !== TYPE.OPEN; else openQuestion"
+            *ngIf="question.type !== type.OPEN; else openQuestion"
             class="options"
           >
             <p>Marque a alternativa correta:</p>

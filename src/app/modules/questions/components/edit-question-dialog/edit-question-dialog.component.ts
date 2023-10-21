@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DefaultCrudService } from '../services/default-crud.service';
+import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
 import {
   QuestionInterface,
   QuestionType,
-} from '../interfaces/question.interface';
+} from '../../interfaces/question.interface';
 
 @Component({
   selector: 'app-edit-question-dialog',

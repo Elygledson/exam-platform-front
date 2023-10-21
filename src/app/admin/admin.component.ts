@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DefaultCrudService } from '../shared/services/default-crud.service';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../authentication/services/auth.service';
 
 @Component({
   selector: 'app-admin',

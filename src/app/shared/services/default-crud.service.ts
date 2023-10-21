@@ -158,7 +158,6 @@ export class DefaultCrudService {
   httpPostAutomatedQuestions(endPoint: string, data: any): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = `http://127.0.0.1:8000/api/${endPoint}`;
-      console.log(url);
       this.http.post(url, data).subscribe(
         (res: any) => {
           if (res) {

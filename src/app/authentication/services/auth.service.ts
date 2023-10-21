@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DefaultCrudService } from './default-crud.service';
+import { DefaultCrudService } from '../../shared/services/default-crud.service';
 import { LoginInterface } from '../interfaces/login.interface';
 import { Router } from '@angular/router';
 
