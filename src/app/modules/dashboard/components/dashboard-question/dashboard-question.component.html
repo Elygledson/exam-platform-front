@@ -36,7 +36,7 @@
       <div class="exam-discipline">Administrador</div>
       <div class="exam-discipline">{{ question.difficulty }}</div>
       <div class="exam-discipline">
-        <ng-container *ngFor="let star of getStarArray(question.score)">
+        <ng-container *ngFor="let star of getStarArray(question.level)">
           <mat-icon class="star">star</mat-icon>
         </ng-container>
       </div>

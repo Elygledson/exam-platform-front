@@ -1,6 +1,6 @@
 <h1 mat-dialog-title style="text-align: center">Edição</h1>
 <div mat-dialog-content>
-  <div *ngIf="data.type == QuestionType.MCQ">
+  <div *ngIf="data.question_type_id == QuestionType.MCQ">
     <form [formGroup]="question">
       <mat-form-field>
         <mat-label>Descrição</mat-label>
@@ -59,7 +59,7 @@
       <button mat-raised-button color="primary" (click)="save()">Salvar</button>
     </form>
   </div>
-  <div *ngIf="data.type == QuestionType.BOOLEAN">
+  <div *ngIf="data.question_type_id == QuestionType.BOOLEAN">
     <form [formGroup]="question">
       <div style="display: flex; flex-direction: column">
         <mat-form-field>
@@ -92,7 +92,7 @@
       <button mat-raised-button color="primary" (click)="save()">Salvar</button>
     </form>
   </div>
-  <div *ngIf="data.type == QuestionType.OPEN">
+  <div *ngIf="data.question_type_id == QuestionType.OPEN">
     <form [formGroup]="question">
       <div style="display: flex; flex-direction: column">
         <mat-form-field>

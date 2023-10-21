@@ -43,17 +43,13 @@ export class QuestionGeneratorComponent {
     private crudService: DefaultCrudService
   ) {
     this.question = this.fb.group({
+      user_id: new FormControl(1),
+      subject_id: new FormControl(1),
       description: new FormControl('', [Validators.required]),
       options: new FormArray([]),
       answer: new FormControl('', [Validators.required]),
-      difficulty: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required]),
-      score: new FormControl(1, [
-        Validators.min(1),
-        Validators.max(5),
-        Validators.required,
-      ]),
-      type: new FormControl('', [Validators.required]),
+      level: new FormControl('', [Validators.required]),
+      question_type_id: new FormControl(0, [Validators.required]),
     });
   }
 
@@ -79,9 +75,18 @@ export class QuestionGeneratorComponent {
       optionsArray.push(this.fb.control('Sim'));
       optionsArray.push(this.fb.control('Não'));
     }
-    this.question.get('type')?.setValue(type);
+    this.question.get('question_type_id')?.setValue(type);
+    const question = {
+      user_id: 1,
+      subject_id: 1,
+      description: this.question.value.description,
+      options: JSON.stringify(this.question.value.options),
+      answer: this.question.value.answer,
+      level: this.question.value.level,
+      question_type_id: this.question.value.question_type_id,
+    };
     this.crudService
-      .httpPost('questions', this.question.value)
+      .httpPost('questions/store', question)
       .then((response) => this.question.reset());
   }
 
@@ -93,24 +98,12 @@ export class QuestionGeneratorComponent {
   }
 
   saveGeneratedQuestion(): void {
-    this.crudService.httpPost('questions', this.questions);
+    this.crudService.httpPost('questions/store', this.questions);
   }
 
   generateQuestions(questionFrom: QuestionFrom): void {
     this.isLoaded = false;
     if (questionFrom === QuestionFrom.URL) {
-      this.questions = [
-        {
-          id: 1,
-          description: 'question.description',
-          options: ['e', 'e', 'e', 'e'],
-          answer: 'question.answer',
-          category: 'teste',
-          difficulty: Difficulty.EASY,
-          type: QuestionType.MCQ,
-          score: 1,
-        },
-      ];
       this.crudService
         .httpPostAutomatedQuestions('transcription/questions', {
           content: this.url,
@@ -120,30 +113,18 @@ export class QuestionGeneratorComponent {
         .then((response) => {
           this.questions = response.questions.map((question: Question) => {
             return {
+              user_id: 1,
+              subject_id: 1,
+              question_type_id: QuestionType.MCQ,
               description: question.description,
               options: question.options.split('\n'),
               answer: question.answer,
-              category: 'teste',
-              difficulty: Difficulty.EASY,
-              type: QuestionType.MCQ,
-              score: 1,
+              level: Difficulty.EASY,
             } as QuestionInterface;
           });
         })
         .finally(() => (this.isLoaded = true));
     } else {
-      this.questions = [
-        {
-          id: 1,
-          description: 'question.description',
-          options: ['e', 'e', 'e', 'e'],
-          answer: 'question.answer',
-          category: 'teste',
-          difficulty: Difficulty.EASY,
-          type: QuestionType.MCQ,
-          score: 1,
-        },
-      ];
       this.crudService
         .httpPostAutomatedQuestions('text/questions', {
           content: this.text,
@@ -153,13 +134,13 @@ export class QuestionGeneratorComponent {
         .then((response) => {
           this.questions = response.questions.map((question: Question) => {
             return {
+              user_id: 1,
+              subject_id: 1,
+              question_type_id: QuestionType.MCQ,
               description: question.description,
               options: question.options.split('\n'),
               answer: question.answer,
-              category: 'teste',
-              difficulty: Difficulty.EASY,
-              type: QuestionType.MCQ,
-              score: 1,
+              level: Difficulty.EASY,
             } as QuestionInterface;
           });
         })

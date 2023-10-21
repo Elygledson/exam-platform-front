@@ -10,7 +10,6 @@ import {
 import { DefaultCrudService } from 'src/app/shared/services/default-crud.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import {
-  Difficulty,
   QuestionInterface,
   QuestionType,
 } from '../questions/interfaces/question.interface';
@@ -22,8 +21,7 @@ export interface UsersAnswers {
   answerIndex: number;
   userOption: { choosen: number; isCorrect: boolean };
   category: string;
-  difficulty: Difficulty;
-  score: number;
+  level: number;
   type?: QuestionType;
 }
 
@@ -55,35 +53,35 @@ export class ExamComponent {
 
   ngOnInit() {
     if (this.id)
-      this.crudService.httpGet(`exams/${this.id}`).then((response: any) => {
-        this.questions = response.exam.questions.map(
-          (question: QuestionInterface) => {
-            return {
-              description: question.description,
-              options: question.options,
-              answer: question.answer,
-              answerIndex: question.options.indexOf(question.answer),
-              category: question.category,
-              difficulty: question.difficulty,
-              score: question.score,
-              type: question.type,
-              userOption: {
-                choosen: -1,
-                isCorrect: false,
-              },
-            } as UsersAnswers;
-          }
-        );
-      });
+      this.crudService
+        .httpGet('exams/show', { user_id: 1, exam_id: this.id })
+        .then((response: any) => {
+          this.questions = response.exam.questions.map(
+            (question: QuestionInterface) => {
+              return {
+                description: question.description,
+                options: question.options,
+                answer: question.answer,
+                answerIndex: question.options.indexOf(question.answer),
+                level: question.level,
+                type: question.question_type_id,
+                userOption: {
+                  choosen: -1,
+                  isCorrect: false,
+                },
+              } as UsersAnswers;
+            }
+          );
+        });
   }
 
-  getDifficultyColor(difficulty: string) {
+  getDifficultyColor(difficulty: number) {
     switch (difficulty) {
-      case 'Fácil':
+      case 1:
         return 'easy-button';
-      case 'Médio':
+      case 2:
         return 'medium-button';
-      case 'Difícil':
+      case 3:
         return 'hard-button';
       default:
         return '';

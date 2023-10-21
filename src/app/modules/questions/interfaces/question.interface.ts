@@ -1,13 +1,13 @@
 export enum Difficulty {
-  EASY = 'Fácil',
-  MEDIUM = 'Médio',
-  HARD = 'Difícil',
+  EASY = 1,
+  MEDIUM = 2,
+  HARD = 3,
 }
 
 export enum QuestionType {
-  BOOLEAN = 'BOOLEAN',
-  MCQ = 'MCQ',
-  OPEN = 'OPEN',
+  BOOLEAN = 1,
+  MCQ = 2,
+  OPEN = 3,
 }
 
 export enum QuestionFrom {
@@ -17,11 +17,14 @@ export enum QuestionFrom {
 
 export interface QuestionInterface {
   id: number;
+  user_id: number;
+  subject_id: number;
   description: string;
   options: string[];
   answer: string;
-  difficulty: Difficulty;
-  category: string;
-  score: number;
-  type?: QuestionType;
+  difficulty?: Difficulty;
+  category?: string;
+  score?: number;
+  question_type_id?: QuestionType;
+  level: number;
 }

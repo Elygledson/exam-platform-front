@@ -11,7 +11,7 @@ import { SnackbarComponent } from '../../snackbar/snackbar.component';
   providedIn: 'root',
 })
 export class DefaultCrudService {
-  private url = 'http://localhost:3001';
+  private url = 'http://localhost:8080/api';
   constructor(
     private http: HttpClient,
     public snackBar: MatSnackBar,
@@ -25,7 +25,43 @@ export class DefaultCrudService {
     return `${url}/${endPoint}`;
   }
 
-  httpGet(endPoint: string, dynamicUrl?: string): Promise<any> {
+  httpGet(endPoint: string, data: any, dynamicUrl?: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const url = this.getFullEndPoint(endPoint, dynamicUrl);
+      this.http.get(url, data).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        (rej: HttpErrorResponse) => {
+          // TODO VERIFICAR UMA MELHOR FORMA PARA NÃO MOSTRAR A MENSAGEM DE TOKEN INVALIDO
+          if (rej.status !== 401 && rej.message !== 'Token inválido') {
+            let errorMessage = rej.error?.message ?? rej.message;
+
+            if (rej.error.message === undefined) {
+              errorMessage =
+                'Ocorreu algum erro interno, por favor tente novamente!';
+            }
+
+            this.snackBar.openFromComponent(SnackbarComponent, {
+              duration: 8000,
+              horizontalPosition: 'right',
+              verticalPosition: 'top',
+              panelClass: ['mat-toolbar', 'snackbar-danger'],
+              data: {
+                message: Array.isArray(errorMessage)
+                  ? errorMessage[0]
+                  : errorMessage,
+              },
+            });
+          }
+
+          reject(rej);
+        }
+      );
+    });
+  }
+
+  httpGetOne(endPoint: string, dynamicUrl?: string): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = this.getFullEndPoint(endPoint, dynamicUrl);
       this.http.get(url).subscribe(

@@ -38,18 +38,18 @@
               Questão {{ question.id }}
               <button
                 mat-stroked-button
-                [ngClass]="getDifficultyColor(question.difficulty)"
+                [ngClass]="getDifficultyColor(question.level)"
               >
-                {{ question.difficulty }}
+                {{ getLevelName(question.level) }}
               </button>
             </mat-card-title>
-            <p>{{ question.score }}/5</p>
+            <p>3/5</p>
           </mat-card-header>
           <mat-card-content class="card-content">
             <div class="question-text">
               <p>{{ question.description }}</p>
             </div>
-            <div *ngIf="question.type != TYPE.OPEN" class="options">
+            <div *ngIf="question.question_type_id != TYPE.OPEN" class="options">
               <p>Marque a alternativa correta:</p>
               <mat-radio-group
                 aria-labelledby="options"
@@ -88,19 +88,19 @@
               Questão {{ question.id }}
               <button
                 mat-stroked-button
-                [ngClass]="getDifficultyColor(question.difficulty)"
+                [ngClass]="getDifficultyColor(question.level)"
               >
-                {{ question.difficulty }}
+                {{ question.level }}
               </button>
             </mat-card-title>
-            <p>{{ question.score }}/5</p>
+            <p>1/5</p>
           </mat-card-header>
           <mat-card-content class="card-content">
             <div class="question-text">
               <p>{{ question.description }}</p>
             </div>
 
-            <div *ngIf="question.type != TYPE.OPEN" class="options">
+            <div *ngIf="question.question_type_id != TYPE.OPEN" class="options">
               <p>Marque a alternativa correta:</p>
               <mat-radio-group
                 aria-labelledby="options"

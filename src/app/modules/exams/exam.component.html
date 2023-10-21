@@ -23,12 +23,12 @@
             Questão {{ i + 1 }}
             <button
               mat-stroked-button
-              [ngClass]="getDifficultyColor(question.difficulty)"
+              [ngClass]="getDifficultyColor(question.level)"
             >
-              {{ question.difficulty }}
+              {{ question.level }}
             </button>
           </mat-card-title>
-          <p>{{ question.score }}/5</p>
+          <p>3/5</p>
         </mat-card-header>
         <mat-card-content class="card-content">
           <div class="question-text">

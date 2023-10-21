@@ -22,8 +22,18 @@ export class DashboardQuestionComponent {
   ) {}
 
   ngOnInit() {
-    this.crudService.httpGet('questions').then((response) => {
-      this.filterQuestions = response.questions;
+    this.crudService.httpGet('questions', { user_id: 1 }).then((response) => {
+      this.filterQuestions = response.questions.map((question: any) => {
+        return {
+          user_id: 1,
+          subject_id: 1,
+          description: question.description,
+          options: JSON.parse(question.options),
+          answer: question.answer,
+          level: question.level,
+          question_type_id: question.question_type_id,
+        };
+      });
       this.questions = this.filterQuestions;
     });
   }
@@ -38,7 +48,7 @@ export class DashboardQuestionComponent {
 
   applyFilter(): void {
     this.filterQuestions = this.questions.filter((question) =>
-      question.category.toLowerCase().includes(this.filter.toLowerCase())
+      question.description.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
 

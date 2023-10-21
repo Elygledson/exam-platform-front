@@ -29,7 +29,7 @@ export class DashboardExamComponent {
   ) {}
 
   ngOnInit() {
-    this.crudService.httpGet('exams').then((response) => {
+    this.crudService.httpGet('exams', { user_id: 1 }).then((response) => {
       this.exams = response.exams;
       this.filterExams = this.exams;
     });
@@ -58,7 +58,7 @@ export class DashboardExamComponent {
 
   removeExam(index: number): void {
     this.crudService
-      .httpDelete(`exams/${this.filterExams[index].id}`)
+      .httpDelete(`exams/destroy/${this.filterExams[index].id}`)
       .then(() => this.filterExams.splice(index, 1));
   }
 }

@@ -5,6 +5,7 @@ import { DefaultCrudService } from '../../../../shared/services/default-crud.ser
 import { Router } from '@angular/router';
 import { Exam } from '../../interfaces/exam.interface';
 import {
+  Difficulty,
   QuestionInterface,
   QuestionType,
 } from 'src/app/modules/questions/interfaces/question.interface';
@@ -21,7 +22,6 @@ export class ExamGeneratorComponent {
   public selectedCourse = '';
   public examName = '';
   public TYPE = QuestionType;
-  inReorderMode = false;
 
   courses = [
     'Introdução à Programação',
@@ -45,13 +45,25 @@ export class ExamGeneratorComponent {
   ) {}
 
   ngOnInit() {
-    this.crudService.httpGet('questions').then((response) => {
-      this.questions = response.questions;
+    this.crudService.httpGet('questions', { user_id: 1 }).then((response) => {
+      this.questions = response.questions.map((question: any) => {
+        return {
+          user_id: 1,
+          subject_id: 1,
+          description: question.description,
+          options: JSON.parse(question.options),
+          answer: question.answer,
+          level: question.level,
+          question_type_id: question.question_type_id,
+        };
+      });
     });
   }
 
   openConfirmationDialog(): void {
     const exam: Exam = {
+      user_id: 1,
+      subject_id: 1,
       name: this.examName,
       questions: this.selectedQuestions,
     };
@@ -89,14 +101,27 @@ export class ExamGeneratorComponent {
     if (this.exam) this.router.navigate(['exam', this.exam.id]);
   }
 
-  getDifficultyColor(difficulty: string) {
+  getDifficultyColor(difficulty: number) {
     switch (difficulty) {
-      case 'Fácil':
+      case 1:
         return 'easy-button';
-      case 'Médio':
+      case 2:
         return 'medium-button';
-      case 'Difícil':
+      case 3:
         return 'hard-button';
+      default:
+        return '';
+    }
+  }
+
+  getLevelName(difficulty: Difficulty) {
+    switch (difficulty) {
+      case 1:
+        return 'Fácil';
+      case 2:
+        return 'Médio';
+      case 3:
+        return 'Difícil';
       default:
         return '';
     }
