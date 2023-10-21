@@ -13,7 +13,7 @@ import { DashboardQuestionComponent } from './modules/dashboard/components/dashb
 import { QuestionGeneratorComponent } from './modules/questions/components/question-generator/question-generator.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { ExamComponent } from './modules/exams/exam.component';
-import { ExamSubmissionComponent } from './exam-submission/exam-submission.component';
+import { ExamSubmissionComponent } from './modules/exams/components/exam-submission/exam-submission.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
