@@ -19,3 +19,5 @@ FROM nginx:1.15.8-alpine
 
 #Copy built angular files to NGINX HTML folder
 COPY --from=build /app/dist/exam-platform-front /usr/share/nginx/html
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
