@@ -54,9 +54,9 @@ export class ExamComponent {
   ngOnInit() {
     if (this.id)
       this.crudService
-        .httpGet('exams/show', { user_id: 1, exam_id: this.id })
+        .httpPost('exams/show', { user_id: 1, exam_id: this.id })
         .then((response: any) => {
-          this.questions = response.exam.questions.map(
+          this.questions = response.questions.map(
             (question: QuestionInterface) => {
               return {
                 description: question.description,
