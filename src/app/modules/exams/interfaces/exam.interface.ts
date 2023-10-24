@@ -5,9 +5,8 @@ export interface Exam {
   author?: string;
   user_id?: number;
   subject_id?: number;
+  subject_name?: string;
   name: string;
   questions: QuestionInterface[];
-  createdAt?: Date;
-  updatedAt?: Date;
-  deleteAt?: Date;
+  created_at?: Date;
 }

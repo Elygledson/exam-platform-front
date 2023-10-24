@@ -29,18 +29,10 @@
   <div class="exam-card" *ngFor="let exam of filterExams; let i = index">
     <div class="exam-details">
       <div class="exam-name">{{ exam.name }}</div>
-      <div class="exam-discipline">teste</div>
+      <div class="exam-discipline">{{ exam.subject_name }}</div>
       <div class="exam-date">
-        {{ exam.createdAt | date : "dd/MM/yyyy" }}
+        {{ exam.created_at | date : "dd/MM/yyyy" }}
       </div>
-      <button
-        mat-button
-        color="primary"
-        style="color: white"
-        (click)="editExam(i)"
-      >
-        Editar
-      </button>
       <button
         mat-icon-button
         style="color: #fff"

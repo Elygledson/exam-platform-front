@@ -13,14 +13,7 @@ import { Exam } from '../../../exams/interfaces/exam.interface';
 export class DashboardExamComponent {
   filter: string = '';
   exams: Exam[] = [];
-  filterExams: Exam[] = [
-    {
-      id: 1,
-      author: 'teste',
-      name: 'teste',
-      questions: [],
-    },
-  ];
+  filterExams: Exam[] = [];
 
   constructor(
     private crudService: DefaultCrudService,
@@ -29,8 +22,8 @@ export class DashboardExamComponent {
   ) {}
 
   ngOnInit() {
-    this.crudService.httpGet('exams', { user_id: 1 }).then((response) => {
-      this.exams = response.exams;
+    this.crudService.httpPost('exams', { user_id: 1 }).then((response) => {
+      this.exams = response;
       this.filterExams = this.exams;
     });
   }
@@ -47,13 +40,6 @@ export class DashboardExamComponent {
     this.filterExams = this.exams.filter((exame) =>
       exame.name.toLowerCase().includes(this.filter.toLowerCase())
     );
-  }
-
-  editExam(index: number): void {
-    const dialogRef = this.dialog.open(EditExamDialogComponent, {
-      width: '400px',
-      data: { exam: this.filterExams[index] },
-    });
   }
 
   removeExam(index: number): void {

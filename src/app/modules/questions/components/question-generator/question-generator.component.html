@@ -264,7 +264,13 @@
               />
             </mat-form-field>
           </div>
-          <button mat-raised-button color="primary">Salvar</button>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="questions.length == 0"
+          >
+            Salvar
+          </button>
         </form>
       </ng-container>
       <ng-template #loading>

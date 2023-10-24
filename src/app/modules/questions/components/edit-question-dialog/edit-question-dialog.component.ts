@@ -25,12 +25,13 @@ export class EditQuestionDialogComponent {
   ) {
     this.question = this.fb.group({
       id: [this.data.id],
+      user_id: 1,
+      subject_id: 1,
       description: [this.data.description],
       options: this.fb.array(this.data.options || []),
       answer: [this.data.answer],
-      difficulty: [this.data.difficulty],
-      category: [this.data.category],
-      score: [this.data.score],
+      level: [this.data.level],
+      question_type_id: this.data.question_type_id,
     });
   }
 

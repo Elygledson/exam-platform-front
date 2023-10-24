@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EditQuestionDialogComponent } from '../../../questions/components/edit-question-dialog/edit-question-dialog.component';
 import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
-import { QuestionInterface } from '../../../questions/interfaces/question.interface';
+import {
+  Difficulty,
+  QuestionInterface,
+} from '../../../questions/interfaces/question.interface';
 
 @Component({
   selector: 'app-dashboard-question',
@@ -22,9 +25,10 @@ export class DashboardQuestionComponent {
   ) {}
 
   ngOnInit() {
-    this.crudService.httpGet('questions', { user_id: 1 }).then((response) => {
-      this.filterQuestions = response.questions.map((question: any) => {
+    this.crudService.httpPost('questions', { user_id: 1 }).then((response) => {
+      this.filterQuestions = response.map((question: any) => {
         return {
+          id: question.id,
           user_id: 1,
           subject_id: 1,
           description: question.description,
@@ -59,9 +63,22 @@ export class DashboardQuestionComponent {
     });
   }
 
+  getLevelName(difficulty: Difficulty) {
+    switch (difficulty) {
+      case 1:
+        return 'Fácil';
+      case 2:
+        return 'Médio';
+      case 3:
+        return 'Difícil';
+      default:
+        return '';
+    }
+  }
+
   removeQuestion(index: number): void {
     this.crudService
-      .httpDelete(`questions/${this.filterQuestions[index].id}`)
+      .httpDelete(`questions/destroy/${this.filterQuestions[index].id}`)
       .then((response) => this.filterQuestions.splice(index, 1));
   }
 }

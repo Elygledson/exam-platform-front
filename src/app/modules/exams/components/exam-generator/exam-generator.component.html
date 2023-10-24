@@ -1,21 +1,9 @@
 <div class="container">
-  <div class="filter">
-    <mat-form-field>
-      <mat-label>Selecione uma Disciplina</mat-label>
-      <mat-select
-        [(ngModel)]="selectedCourse"
-        (selectionChange)="onCourseChange()"
-      >
-        <mat-option *ngFor="let course of courses" [value]="course">{{
-          course
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <h1 style="margin-left: 24px">
-    {{ selectedCourse || courses[0] }}
+  <h1
+    style="text-align: center; font-weight: 700; font-size: 45px; padding: 15px"
+  >
+    Questões
   </h1>
-
   <mat-horizontal-stepper
     [linear]="true"
     #stepper

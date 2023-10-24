@@ -21,7 +21,6 @@
     </div>
   </div>
   <div class="exam-header">
-    <div class="column">Disciplina</div>
     <div class="column">Autor</div>
     <div class="column">Dificuldade</div>
     <div class="column">Pontuação</div>
@@ -32,9 +31,8 @@
     *ngFor="let question of filterQuestions; let i = index"
   >
     <div class="exam-details">
-      <div class="exam-discipline">{{ question.category }}</div>
       <div class="exam-discipline">Administrador</div>
-      <div class="exam-discipline">{{ question.difficulty }}</div>
+      <div class="exam-discipline">{{ getLevelName(question.level) }}</div>
       <div class="exam-discipline">
         <ng-container *ngFor="let star of getStarArray(question.level)">
           <mat-icon class="star">star</mat-icon>

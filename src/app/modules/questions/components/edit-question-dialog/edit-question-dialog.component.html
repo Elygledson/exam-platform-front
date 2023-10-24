@@ -39,21 +39,7 @@
 
         <mat-form-field>
           <mat-label>Dificuldade</mat-label>
-          <mat-select formControlName="difficulty">
-            <mat-option value="Fácil">Fácil</mat-option>
-            <mat-option value="Médio">Médio</mat-option>
-            <mat-option value="Difícil">Difícil</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Categoria</mat-label>
-          <input matInput formControlName="category" />
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Pontuação</mat-label>
-          <input matInput formControlName="score" />
+          <input matInput formControlName="level" />
         </mat-form-field>
       </div>
       <button mat-raised-button color="primary" (click)="save()">Salvar</button>
@@ -74,20 +60,11 @@
 
       <mat-form-field>
         <mat-label>Dificuldade</mat-label>
-        <mat-select formControlName="difficulty">
-          <mat-option value="Fácil">Fácil</mat-option>
-          <mat-option value="Médio">Médio</mat-option>
-          <mat-option value="Difícil">Difícil</mat-option>
+        <mat-select formControlName="level">
+          <mat-option value="1">Fácil</mat-option>
+          <mat-option value="2">Médio</mat-option>
+          <mat-option value="3">Difícil</mat-option>
         </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Categoria</mat-label>
-        <input matInput formControlName="category" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Pontuação</mat-label>
-        <input matInput formControlName="score" />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="save()">Salvar</button>
     </form>
@@ -103,20 +80,11 @@
 
       <mat-form-field>
         <mat-label>Dificuldade</mat-label>
-        <mat-select formControlName="difficulty">
-          <mat-option value="Fácil">Fácil</mat-option>
-          <mat-option value="Médio">Médio</mat-option>
-          <mat-option value="Difícil">Difícil</mat-option>
+        <mat-select formControlName="level">
+          <mat-option value="1">Fácil</mat-option>
+          <mat-option value="2">Médio</mat-option>
+          <mat-option value="3">Difícil</mat-option>
         </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Categoria</mat-label>
-        <input matInput formControlName="category" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Pontuação</mat-label>
-        <input matInput formControlName="score" />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="save()">Salvar</button>
     </form>

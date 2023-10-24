@@ -11,7 +11,7 @@ import { SnackbarComponent } from '../../snackbar/snackbar.component';
   providedIn: 'root',
 })
 export class DefaultCrudService {
-  private url = 'http://localhost:8080/api';
+  private url = 'http://pds-2023-1-01.edge.net.br:9001/api';
   constructor(
     private http: HttpClient,
     public snackBar: MatSnackBar,
@@ -141,7 +141,7 @@ export class DefaultCrudService {
       const url = this.getFullEndPoint(endPoint, dynamicUrl);
       this.http.post(url, data).subscribe(
         (res: any) => {
-          if (res) {
+          if (res.message) {
             this.snackBar.openFromComponent(SnackbarComponent, {
               duration: 8000,
               horizontalPosition: 'right',
@@ -193,7 +193,7 @@ export class DefaultCrudService {
 
   httpPostAutomatedQuestions(endPoint: string, data: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      const url = `http://127.0.0.1:8000/api/${endPoint}`;
+      const url = `http://pds-2023-1-01.edge.net.br:7001/api/${endPoint}`;
       this.http.post(url, data).subscribe(
         (res: any) => {
           if (res) {

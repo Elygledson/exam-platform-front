@@ -45,9 +45,10 @@ export class ExamGeneratorComponent {
   ) {}
 
   ngOnInit() {
-    this.crudService.httpGet('questions', { user_id: 1 }).then((response) => {
-      this.questions = response.questions.map((question: any) => {
+    this.crudService.httpPost('questions', { user_id: 1 }).then((response) => {
+      this.questions = response.map((question: any) => {
         return {
+          id: question.id,
           user_id: 1,
           subject_id: 1,
           description: question.description,

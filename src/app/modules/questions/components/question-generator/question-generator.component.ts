@@ -18,7 +18,7 @@ import {
 
 interface Question {
   description: string;
-  options: string;
+  options: string[];
   answer: string;
 }
 
@@ -68,23 +68,36 @@ export class QuestionGeneratorComponent {
   }
 
   save(type: QuestionType): void {
+    let question: any;
     if (type === this.TYPE.BOOLEAN) {
       const optionsArray = this.question.get('options') as FormArray;
       optionsArray.clear();
 
       optionsArray.push(this.fb.control('Sim'));
       optionsArray.push(this.fb.control('Não'));
+      const answer = this.question.get('answer')?.value;
+      question = {
+        user_id: 1,
+        subject_id: 1,
+        description: this.question.value.description,
+        options: JSON.stringify(this.question.value.options),
+        answer: answer[0],
+        level: this.question.value.level,
+        question_type_id: this.question.value.question_type_id,
+      };
+    } else {
+      question = {
+        user_id: 1,
+        subject_id: 1,
+        description: this.question.value.description,
+        options: JSON.stringify(this.question.value.options),
+        answer: this.question.value.answer,
+        level: this.question.value.level,
+        question_type_id: this.question.value.question_type_id,
+      };
     }
     this.question.get('question_type_id')?.setValue(type);
-    const question = {
-      user_id: 1,
-      subject_id: 1,
-      description: this.question.value.description,
-      options: JSON.stringify(this.question.value.options),
-      answer: this.question.value.answer,
-      level: this.question.value.level,
-      question_type_id: this.question.value.question_type_id,
-    };
+
     this.crudService
       .httpPost('questions/store', question)
       .then((response) => this.question.reset());
@@ -98,7 +111,17 @@ export class QuestionGeneratorComponent {
   }
 
   saveGeneratedQuestion(): void {
-    this.crudService.httpPost('questions/store', this.questions);
+    this.questions.forEach((question: Question) => {
+      this.crudService.httpPost('questions/store', {
+        user_id: 1,
+        subject_id: 1,
+        description: question.description,
+        options: JSON.stringify(question.options),
+        answer: question.answer,
+        question_type_id: 2,
+        level: 2,
+      });
+    });
   }
 
   generateQuestions(questionFrom: QuestionFrom): void {
@@ -117,7 +140,7 @@ export class QuestionGeneratorComponent {
               subject_id: 1,
               question_type_id: QuestionType.MCQ,
               description: question.description,
-              options: question.options.split('\n'),
+              options: question.options,
               answer: question.answer,
               level: Difficulty.EASY,
             } as QuestionInterface;
@@ -138,7 +161,7 @@ export class QuestionGeneratorComponent {
               subject_id: 1,
               question_type_id: QuestionType.MCQ,
               description: question.description,
-              options: question.options.split('\n'),
+              options: question.options,
               answer: question.answer,
               level: Difficulty.EASY,
             } as QuestionInterface;
