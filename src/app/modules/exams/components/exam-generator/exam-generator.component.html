@@ -78,7 +78,7 @@
                 mat-stroked-button
                 [ngClass]="getDifficultyColor(question.level)"
               >
-                {{ question.level }}
+                {{ getLevelName(question.level) }}
               </button>
             </mat-card-title>
             <p>1/5</p>

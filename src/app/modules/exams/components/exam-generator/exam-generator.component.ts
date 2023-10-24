@@ -17,7 +17,7 @@ import {
 })
 export class ExamGeneratorComponent {
   public selectedQuestions: QuestionInterface[] = [];
-  public exam!: Exam;
+  public exam: Exam[] = [];
   public selectedStepper = 0;
   public selectedCourse = '';
   public examName = '';
@@ -75,7 +75,8 @@ export class ExamGeneratorComponent {
     dialogRef.afterClosed().subscribe((response) => {
       if (response)
         this.crudService.httpPost('exams', exam).then((response) => {
-          this.exam = response.exam;
+          console.log(response);
+          this.exam = response;
           this.shareExam();
         });
     });
@@ -99,7 +100,8 @@ export class ExamGeneratorComponent {
   onCourseChange(): void {}
 
   shareExam(): void {
-    if (this.exam) this.router.navigate(['exam', this.exam.id]);
+    if (this.exam.length > 0)
+      this.router.navigate(['exam', this.exam[0]['id']]);
   }
 
   getDifficultyColor(difficulty: number) {

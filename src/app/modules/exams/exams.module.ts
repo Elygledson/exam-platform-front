@@ -5,6 +5,7 @@ import { ExamComponent } from './exam.component';
 import { ExamGeneratorComponent } from './components/exam-generator/exam-generator.component';
 import { EditExamDialogComponent } from './components/edit-exam-dialog/edit-exam-dialog.component';
 import { ExamSubmissionComponent } from './components/exam-submission/exam-submission.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { ExamSubmissionComponent } from './components/exam-submission/exam-submi
     ExamGeneratorComponent,
     ExamSubmissionComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [AppRoutingModule, CommonModule, MaterialModule],
 })
 export class ExamsModule {}
