@@ -56,22 +56,21 @@ export class ExamComponent {
       this.crudService
         .httpPost('exams/show', { user_id: 1, exam_id: this.id })
         .then((response: any) => {
-          this.questions = response.questions.map(
-            (question: QuestionInterface) => {
-              return {
-                description: question.description,
-                options: question.options,
-                answer: question.answer,
-                answerIndex: question.options.indexOf(question.answer),
-                level: question.level,
-                type: question.question_type_id,
-                userOption: {
-                  choosen: -1,
-                  isCorrect: false,
-                },
-              } as UsersAnswers;
-            }
-          );
+          this.questions = response.questions.map((question: any) => {
+            const options = JSON.parse(question.options);
+            return {
+              description: question.description,
+              options: options,
+              answer: question.answer,
+              answerIndex: options.indexOf(question.answer),
+              level: question.level,
+              type: question.question_type_id,
+              userOption: {
+                choosen: -1,
+                isCorrect: false,
+              },
+            } as UsersAnswers;
+          });
         });
   }
 
@@ -83,6 +82,19 @@ export class ExamComponent {
         return 'medium-button';
       case 3:
         return 'hard-button';
+      default:
+        return '';
+    }
+  }
+
+  getLevelName(difficulty: number) {
+    switch (difficulty) {
+      case 1:
+        return 'Fácil';
+      case 2:
+        return 'Médio';
+      case 3:
+        return 'Difícil';
       default:
         return '';
     }

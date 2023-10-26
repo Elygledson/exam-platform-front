@@ -23,19 +23,6 @@ export class ExamGeneratorComponent {
   public examName = '';
   public TYPE = QuestionType;
 
-  courses = [
-    'Introdução à Programação',
-    'Algoritmos e Estruturas de Dados',
-    'Banco de Dados e Sistemas de Gerenciamento',
-    'Redes de Computadores',
-    'Engenharia de Software',
-    'Inteligência Artificial',
-    'Segurança da Informação',
-    'Desenvolvimento Web',
-    'Sistemas Operacionais',
-    'Computação Gráfica',
-  ];
-
   questions: QuestionInterface[] = [];
 
   constructor(
@@ -75,7 +62,6 @@ export class ExamGeneratorComponent {
     dialogRef.afterClosed().subscribe((response) => {
       if (response)
         this.crudService.httpPost('exams', exam).then((response) => {
-          console.log(response);
           this.exam = response;
           this.shareExam();
         });
