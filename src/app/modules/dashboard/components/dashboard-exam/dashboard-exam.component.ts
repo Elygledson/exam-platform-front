@@ -31,6 +31,10 @@ export class DashboardExamComponent {
     this.router.navigate(['admin', 'create-exam']);
   }
 
+  navigateToExam(examId: number): void {
+    this.router.navigate(['exam', examId]);
+  }
+
   checkSubmissions(examId: number): void {
     this.router.navigate(['admin/exam-submission', examId]);
   }

@@ -36,6 +36,14 @@
       <button
         mat-icon-button
         style="color: #fff"
+        matTooltip="Ir para prova"
+        (click)="navigateToExam(exam.id)"
+      >
+        <mat-icon>link</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        style="color: #fff"
         matTooltip="Checar Submissões"
         (click)="checkSubmissions(exam.id)"
       >
