@@ -89,42 +89,6 @@
       </button>
     </form>
   </mat-expansion-panel>
-
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>Questão Aberta</mat-panel-title>
-      <mat-panel-description>
-        Insira os detalhes da questão.
-        <mat-icon>help_outline</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <form [formGroup]="question">
-      <div style="display: flex; flex-direction: column">
-        <mat-form-field>
-          <mat-label>Descrição</mat-label>
-          <input matInput formControlName="description" />
-        </mat-form-field>
-      </div>
-      <mat-form-field>
-        <mat-label>Dificuldade</mat-label>
-        <mat-select formControlName="level">
-          <mat-option value="1">Fácil</mat-option>
-          <mat-option value="2">Médio</mat-option>
-          <mat-option value="3">Difícil</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Resposta Correta</mat-label>
-        <input matInput formControlName="answer" />
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="save(TYPE.OPEN)">
-        Salvar
-      </button>
-    </form>
-  </mat-expansion-panel>
 </mat-accordion>
 <div class="automated-question">
   <div class="sidebar">
