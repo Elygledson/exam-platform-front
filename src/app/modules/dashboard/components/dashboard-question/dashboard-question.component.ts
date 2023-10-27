@@ -53,9 +53,24 @@ export class DashboardQuestionComponent {
   }
 
   applyFilter(): void {
-    this.filterQuestions = this.questions.filter((question) =>
-      question.description.toLowerCase().includes(this.filter.toLowerCase())
-    );
+    this.filterQuestions = this.questions.filter((question) => {
+      if (
+        this.getLevelName(question.level).toLocaleLowerCase() ===
+        this.filter.toLowerCase()
+      )
+        return question;
+      else if (
+        this.getLevelName(question.level).toLocaleLowerCase() ===
+        this.filter.toLowerCase()
+      )
+        return question;
+      else if (
+        this.getLevelName(question.level).toLocaleLowerCase() ===
+        this.filter.toLowerCase()
+      )
+        return question;
+      return;
+    });
   }
 
   editQuestion(index: number): void {
