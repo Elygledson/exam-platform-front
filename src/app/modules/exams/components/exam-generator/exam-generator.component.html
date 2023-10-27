@@ -37,20 +37,18 @@
             <div class="question-text">
               <p>{{ question.description }}</p>
             </div>
-            <div *ngIf="question.question_type_id != TYPE.OPEN" class="options">
-              <p>Marque a alternativa correta:</p>
-              <mat-radio-group
-                aria-labelledby="options"
-                class="example-radio-group"
+            <p>Marque a alternativa correta:</p>
+            <mat-radio-group
+              aria-labelledby="options"
+              class="example-radio-group"
+            >
+              <mat-radio-button
+                color="primary"
+                *ngFor="let option of question.options"
+                [value]="option"
+                >{{ option }}</mat-radio-button
               >
-                <mat-radio-button
-                  color="primary"
-                  *ngFor="let option of question.options"
-                  [value]="option"
-                  >{{ option }}</mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
+            </mat-radio-group>
           </mat-card-content>
         </mat-card>
         <mat-expansion-panel>
@@ -61,6 +59,11 @@
             {{ question.answer }}
           </mat-panel-description>
         </mat-expansion-panel>
+      </div>
+      <div class="step-buttons">
+        <button mat-flat-button matStepperNext color="primary" type="button">
+          Confirmar
+        </button>
       </div>
     </mat-step>
 
@@ -88,22 +91,26 @@
               <p>{{ question.description }}</p>
             </div>
 
-            <div *ngIf="question.question_type_id != TYPE.OPEN" class="options">
-              <p>Marque a alternativa correta:</p>
-              <mat-radio-group
-                aria-labelledby="options"
-                class="example-radio-group"
+            <p>Marque a alternativa correta:</p>
+            <mat-radio-group
+              aria-labelledby="options"
+              class="example-radio-group"
+            >
+              <mat-radio-button
+                color="primary"
+                *ngFor="let option of question.options"
+                [value]="option"
+                >{{ option }}</mat-radio-button
               >
-                <mat-radio-button
-                  color="primary"
-                  *ngFor="let option of question.options"
-                  [value]="option"
-                  >{{ option }}</mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
+            </mat-radio-group>
           </mat-card-content>
         </mat-card>
+      </div>
+      <div class="step-buttons">
+        <button mat-flat-button matStepperPrevious type="button">Voltar</button>
+        <button mat-flat-button matStepperNext color="primary" type="button">
+          Confirmar
+        </button>
       </div>
     </mat-step>
 
@@ -118,12 +125,6 @@
             name="provaName"
           />
         </mat-form-field>
-        <div class="share-button">
-          <a class="share-link" (click)="shareExam()">
-            <mat-icon class="share-icon">share</mat-icon>
-            Compartilhar Prova
-          </a>
-        </div>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

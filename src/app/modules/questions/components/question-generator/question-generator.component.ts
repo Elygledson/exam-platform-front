@@ -34,9 +34,11 @@ export class QuestionGeneratorComponent {
   questions: QuestionInterface[] = [];
   TYPE = QuestionType;
   QuestionFrom = QuestionFrom;
-  url = '';
+  content = '';
   text = '';
+  url = '';
   isLoaded = true;
+  selectedQuestionType = '';
 
   constructor(
     private fb: FormBuilder,
@@ -83,7 +85,7 @@ export class QuestionGeneratorComponent {
         options: JSON.stringify(this.question.value.options),
         answer: answer[0],
         level: this.question.value.level,
-        question_type_id: this.question.value.question_type_id,
+        question_type_id: type,
       };
     } else {
       question = {
@@ -124,12 +126,12 @@ export class QuestionGeneratorComponent {
     });
   }
 
-  generateQuestions(questionFrom: QuestionFrom): void {
+  generateQuestions(questionFrom: string): void {
     this.isLoaded = false;
     if (questionFrom === QuestionFrom.URL) {
       this.crudService
         .httpPostAutomatedQuestions('transcription/questions', {
-          content: this.url,
+          content: this.content,
           type: 'multiple_choice',
           num: 5,
         })
@@ -150,7 +152,7 @@ export class QuestionGeneratorComponent {
     } else {
       this.crudService
         .httpPostAutomatedQuestions('text/questions', {
-          content: this.text,
+          content: this.content,
           type: 'multiple_choice',
           num: 4,
         })

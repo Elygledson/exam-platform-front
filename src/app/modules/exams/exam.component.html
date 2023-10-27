@@ -9,7 +9,7 @@
       <mat-form-field class="small-width">
         <input
           matInput
-          formControlName="studentRegistrationCode"
+          formControlName="register"
           placeholder="Nº Matrícula"
           required
         />
@@ -34,44 +34,28 @@
           <div class="question-text">
             <p>{{ question.description }}</p>
           </div>
-          <ng-container
-            *ngIf="question.type !== type.OPEN; else openQuestion"
-            class="options"
-          >
-            <p>Marque a alternativa correta:</p>
-            <mat-radio-group
-              aria-labelledby="options"
-              class="example-radio-group"
-            >
-              <mat-radio-button
-                color="primary"
-                *ngFor="let option of question.options; let j = index"
-                [ngClass]="{
-                  'correct-answer': submitted && question.answerIndex == j,
-                  'wrong-answer':
-                    submitted &&
-                    !question.userOption.isCorrect &&
-                    question.userOption.choosen == j
-                }"
-                [value]="option"
-                (change)="onAnswerSelected(i, j, $event.value)"
-                [disabled]="submitted"
-                >{{ option }}</mat-radio-button
-              >
-            </mat-radio-group>
-          </ng-container>
 
-          <ng-template #openQuestion>
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                placeholder="Sua Resposta"
-                [(ngModel)]="answer"
-                name="userName"
-                required
-              />
-            </mat-form-field>
-          </ng-template>
+          <p>Marque a alternativa correta:</p>
+          <mat-radio-group
+            aria-labelledby="options"
+            class="example-radio-group"
+          >
+            <mat-radio-button
+              color="primary"
+              *ngFor="let option of question.options; let j = index"
+              [ngClass]="{
+                'correct-answer': submitted && question.answerIndex == j,
+                'wrong-answer':
+                  submitted &&
+                  !question.userOption.isCorrect &&
+                  question.userOption.choosen == j
+              }"
+              [value]="option"
+              (change)="onAnswerSelected(i, j, $event.value)"
+              [disabled]="submitted"
+              >{{ option }}</mat-radio-button
+            >
+          </mat-radio-group>
         </mat-card-content>
       </mat-card>
     </div>

@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: '', component: DashboardExamComponent },
       { path: 'questions', component: DashboardQuestionComponent },
       { path: 'create-exam', component: ExamGeneratorComponent },
-      { path: 'exam-submission', component: ExamSubmissionComponent },
+      { path: 'exam-submission/:id', component: ExamSubmissionComponent },
       { path: 'create-question', component: QuestionGeneratorComponent },
     ],
   },

@@ -9,18 +9,16 @@ import {
 } from '@angular/forms';
 import { DefaultCrudService } from 'src/app/shared/services/default-crud.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
-import {
-  QuestionInterface,
-  QuestionType,
-} from '../questions/interfaces/question.interface';
+import { QuestionType } from '../questions/interfaces/question.interface';
 
 export interface UsersAnswers {
+  id: number;
   description: string;
   options: string[];
   answer: string;
   answerIndex: number;
   userOption: { choosen: number; isCorrect: boolean };
-  category: string;
+  category?: string;
   level: number;
   type?: QuestionType;
 }
@@ -47,18 +45,19 @@ export class ExamComponent {
   ) {
     this.form = this.fb.group({
       name: new FormControl('', [Validators.required]),
-      studentRegistrationCode: new FormControl('', [Validators.required]),
+      register: new FormControl('', [Validators.required]),
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.id)
-      this.crudService
+      await this.crudService
         .httpPost('exams/show', { user_id: 1, exam_id: this.id })
         .then((response: any) => {
           this.questions = response.questions.map((question: any) => {
             const options = JSON.parse(question.options);
             return {
+              id: question.id,
               description: question.description,
               options: options,
               answer: question.answer,
@@ -111,12 +110,13 @@ export class ExamComponent {
     };
   }
 
-  submit(): void {
+  async submit() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: 'Tem certeza de que deseja finalizar a prova?' },
     });
 
-    dialogRef.afterClosed().subscribe((response) => {
+    dialogRef.afterClosed().subscribe(async (response) => {
+      let submission!: any;
       if (response) {
         this.submitted = response;
         this.questions.forEach((question: UsersAnswers) => {
@@ -125,6 +125,22 @@ export class ExamComponent {
           }
         });
       }
+      submission = {
+        exam_id: this.id,
+        register: this.form.get('register')?.value,
+        name: this.form.get('name')?.value,
+        score: this.corrects,
+        questions: this.questions.map((question) => {
+          return {
+            id: question.id,
+            answer: question.answer,
+            assert: question.userOption.isCorrect,
+          };
+        }),
+      };
+      await this.crudService.httpPost('submissions/store', {
+        ...submission,
+      });
     });
   }
 }

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EditExamDialogComponent } from '../../../exams/components/edit-exam-dialog/edit-exam-dialog.component';
 import { Router } from '@angular/router';
 import { DefaultCrudService } from '../../../../shared/services/default-crud.service';
 import { Exam } from '../../../exams/interfaces/exam.interface';
@@ -17,23 +15,24 @@ export class DashboardExamComponent {
 
   constructor(
     private crudService: DefaultCrudService,
-    private router: Router,
-    private dialog: MatDialog
+    private router: Router
   ) {}
 
-  ngOnInit() {
-    this.crudService.httpPost('exams', { user_id: 1 }).then((response) => {
-      this.exams = response;
-      this.filterExams = this.exams;
-    });
+  async ngOnInit() {
+    await this.crudService
+      .httpPost('exams', { user_id: 1 })
+      .then((response) => {
+        this.exams = response;
+        this.filterExams = this.exams;
+      });
   }
 
   navigateToCreateExam(): void {
     this.router.navigate(['admin', 'create-exam']);
   }
 
-  checkSubmissions(): void {
-    this.router.navigate(['admin/exam-submission']);
+  checkSubmissions(examId: number): void {
+    this.router.navigate(['admin/exam-submission', examId]);
   }
 
   applyFilter(): void {

@@ -5,14 +5,14 @@ export enum Difficulty {
 }
 
 export enum QuestionType {
-  BOOLEAN = 1,
+  OPEN = 1,
   MCQ = 2,
-  OPEN = 3,
+  BOOLEAN = 3,
 }
 
 export enum QuestionFrom {
-  URL = 'url',
-  TEXT = 'text',
+  URL = 'URL',
+  TEXT = 'TEXT',
 }
 
 export interface QuestionInterface {

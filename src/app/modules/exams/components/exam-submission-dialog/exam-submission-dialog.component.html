@@ -1,0 +1,43 @@
+<h2 mat-dialog-title >Prova</h2>
+<mat-dialog-content>
+  <div class="questions" *ngFor="let question of questions; let i = index">
+    <mat-card class="card-item">
+      <mat-card-header class="card-header">
+        <mat-card-title class="card-title">
+          Questão {{ i + 1 }}
+          <button
+            mat-stroked-button
+            [ngClass]="getDifficultyColor(question.level)"
+          >
+            {{ getLevelName(question.level) }}
+          </button>
+        </mat-card-title>
+        <p>3/5</p>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <div class="question-text">
+          <p>{{ question.description }}</p>
+        </div>
+
+        <p>Marque a alternativa correta:</p>
+        <mat-radio-group aria-labelledby="options" class="example-radio-group">
+          <mat-radio-button
+            color="primary"
+            *ngFor="let option of question.options; let j = index"
+            [ngClass]="{
+              'correct-answer': question.answerIndex == j,
+              'wrong-answer':
+                !question.userOption.isCorrect &&
+                question.userOption.choosen == j
+            }"
+            [value]="option"
+            >{{ option }}</mat-radio-button
+          >
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- <mat-card>
+    <mat-card-content>{{ corrects }}/{{ questions.length }}</mat-card-content>
+  </mat-card> -->
+</mat-dialog-content>

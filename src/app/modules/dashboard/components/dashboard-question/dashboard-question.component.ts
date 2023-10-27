@@ -24,22 +24,24 @@ export class DashboardQuestionComponent {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {
-    this.crudService.httpPost('questions', { user_id: 1 }).then((response) => {
-      this.filterQuestions = response.map((question: any) => {
-        return {
-          id: question.id,
-          user_id: 1,
-          subject_id: 1,
-          description: question.description,
-          options: JSON.parse(question.options),
-          answer: question.answer,
-          level: question.level,
-          question_type_id: question.question_type_id,
-        };
+  async ngOnInit() {
+    await this.crudService
+      .httpPost('questions', { user_id: 1 })
+      .then((response) => {
+        this.filterQuestions = response.map((question: any) => {
+          return {
+            id: question.id,
+            user_id: 1,
+            subject_id: 1,
+            description: question.description,
+            options: JSON.parse(question.options),
+            answer: question.answer,
+            level: question.level,
+            question_type_id: question.question_type_id,
+          };
+        });
+        this.questions = this.filterQuestions;
       });
-      this.questions = this.filterQuestions;
-    });
   }
 
   navigateToQuestions(): void {

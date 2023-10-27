@@ -1,7 +1,7 @@
 import { QuestionInterface } from '../../questions/interfaces/question.interface';
 
 export interface Exam {
-  id?: number;
+  id: number;
   author?: string;
   user_id?: number;
   subject_id?: number;

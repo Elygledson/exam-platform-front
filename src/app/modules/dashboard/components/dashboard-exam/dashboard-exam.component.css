@@ -102,13 +102,13 @@ mat-toolbar-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 60%;
+  width: 67%;
 }
 
 .column-name {
   font-weight: 500;
   color: white;
-  margin-left: 93px;
+  margin-left: 35px;
 }
 
 .column-created {

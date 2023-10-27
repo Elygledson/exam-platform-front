@@ -17,7 +17,7 @@ import {
 })
 export class ExamGeneratorComponent {
   public selectedQuestions: QuestionInterface[] = [];
-  public exam: Exam[] = [];
+  public exam!: Exam;
   public selectedStepper = 0;
   public selectedCourse = '';
   public examName = '';
@@ -49,11 +49,15 @@ export class ExamGeneratorComponent {
   }
 
   openConfirmationDialog(): void {
-    const exam: Exam = {
+    const exam: any = {
       user_id: 1,
       subject_id: 1,
       name: this.examName,
-      questions: this.selectedQuestions,
+      questions: this.selectedQuestions.map((question: any) => {
+        return {
+          id: question.id,
+        };
+      }),
     };
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: 'Tem certeza de que deseja criar a prova?' },
@@ -61,8 +65,8 @@ export class ExamGeneratorComponent {
 
     dialogRef.afterClosed().subscribe((response) => {
       if (response)
-        this.crudService.httpPost('exams', exam).then((response) => {
-          this.exam = response;
+        this.crudService.httpPost('exams/store', exam).then((response) => {
+          this.exam = response.exam;
           this.shareExam();
         });
     });
@@ -83,11 +87,8 @@ export class ExamGeneratorComponent {
     }
   }
 
-  onCourseChange(): void {}
-
   shareExam(): void {
-    if (this.exam.length > 0)
-      this.router.navigate(['exam', this.exam[0]['id']]);
+    if (this.exam) this.router.navigate(['exam', this.exam.id]);
   }
 
   getDifficultyColor(difficulty: number) {

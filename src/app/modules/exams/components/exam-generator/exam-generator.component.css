@@ -92,28 +92,12 @@ mat-icon {
   margin-bottom: 16px; /* Espaçamento inferior */
 }
 
-/* Estilo para o botão de compartilhamento */
-.share-button {
+mat-form-field {
+  width: 100%;
+}
+
+.step-buttons {
   display: flex;
-  align-items: center;
-}
-
-/* Estilo para o ícone de compartilhamento */
-.share-icon {
-  font-size: 24px;
-  margin-right: 8px;
-  color: #2196f3; /* Cor do ícone de compartilhamento */
-}
-
-/* Estilo para o link de compartilhamento */
-.share-link {
-  text-decoration: none;
-  color: #2196f3; /* Cor do link de compartilhamento */
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Estilo para o link de compartilhamento quando hover */
-.share-link:hover {
-  text-decoration: underline;
+  justify-content: end;
+  gap: 20px;
 }

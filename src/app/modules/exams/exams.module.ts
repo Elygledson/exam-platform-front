@@ -6,6 +6,7 @@ import { ExamGeneratorComponent } from './components/exam-generator/exam-generat
 import { EditExamDialogComponent } from './components/edit-exam-dialog/edit-exam-dialog.component';
 import { ExamSubmissionComponent } from './components/exam-submission/exam-submission.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ExamSubmissionDialogComponent } from './components/exam-submission-dialog/exam-submission-dialog.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     EditExamDialogComponent,
     ExamGeneratorComponent,
     ExamSubmissionComponent,
+    ExamSubmissionDialogComponent,
   ],
   imports: [AppRoutingModule, CommonModule, MaterialModule],
 })
