@@ -109,13 +109,6 @@ mat-toolbar-row {
   height: 100%;
 }
 
-.exams-container {
-  margin-top: 5%;
-  height: 100%;
-  padding-left: 60px;
-  padding-right: 60px;
-}
-
 .edit-button {
   color: #71269e !important;
 }
