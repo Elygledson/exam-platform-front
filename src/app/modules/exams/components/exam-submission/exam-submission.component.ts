@@ -34,7 +34,6 @@ export class ExamSubmissionComponent implements OnInit {
     this.dialog.open(ExamSubmissionDialogComponent, {
       data: this.submissions[submission],
       width: '700px',
-      height: '1000px',
     });
   }
 }

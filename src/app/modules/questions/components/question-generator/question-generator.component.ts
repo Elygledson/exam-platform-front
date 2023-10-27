@@ -69,7 +69,7 @@ export class QuestionGeneratorComponent {
     optionsArray.removeAt(index);
   }
 
-  save(type: QuestionType): void {
+  async save(type: QuestionType) {
     let question: any;
     if (type === this.TYPE.BOOLEAN) {
       const optionsArray = this.question.get('options') as FormArray;
@@ -95,12 +95,12 @@ export class QuestionGeneratorComponent {
         options: JSON.stringify(this.question.value.options),
         answer: this.question.value.answer,
         level: this.question.value.level,
-        question_type_id: this.question.value.question_type_id,
+        question_type_id: type,
       };
     }
     this.question.get('question_type_id')?.setValue(type);
 
-    this.crudService
+    await this.crudService
       .httpPost('questions/store', question)
       .then((response) => this.question.reset());
   }
