@@ -13,6 +13,8 @@ export class ExamSubmissionComponent implements OnInit {
   filter: string = '';
   @Input() id!: number;
 
+  filterSubmissions: ExamSubmissionInterface[] = [];
+
   submissions: ExamSubmissionInterface[] = [];
 
   constructor(
@@ -25,10 +27,15 @@ export class ExamSubmissionComponent implements OnInit {
       .httpPost('submissions', { exam_id: this.id })
       .then((response) => {
         this.submissions = response;
+        this.filterSubmissions = response;
       });
   }
 
-  applyFilter(): void {}
+  applyFilter(): void {
+    this.filterSubmissions = this.submissions.filter((submission) =>
+      submission.register.toLowerCase().includes(this.filter.toLowerCase())
+    );
+  }
 
   showExam(submission: number): void {
     this.dialog.open(ExamSubmissionDialogComponent, {

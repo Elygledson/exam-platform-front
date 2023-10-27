@@ -18,7 +18,10 @@
     <div class="column" style="padding-left: 12vw">Pontuação</div>
   </div>
   <div style="height: 20px"></div>
-  <div class="exam-card" *ngFor="let submission of submissions; let i = index">
+  <div
+    class="exam-card"
+    *ngFor="let submission of filterSubmissions; let i = index"
+  >
     <div class="exam-details">
       <div class="exam-discipline">{{ submission.register }}</div>
       <div class="exam-discipline">{{ submission.name }}</div>
