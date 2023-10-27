@@ -34,7 +34,6 @@ export class QuestionGeneratorComponent {
   questions: QuestionInterface[] = [];
   TYPE = QuestionType;
   QuestionFrom = QuestionFrom;
-  content = '';
   text = '';
   url = '';
   isLoaded = true;
@@ -131,7 +130,7 @@ export class QuestionGeneratorComponent {
     if (questionFrom === QuestionFrom.URL) {
       this.crudService
         .httpPostAutomatedQuestions('transcription/questions', {
-          content: this.content,
+          content: this.url,
           type: 'multiple_choice',
           num: 5,
         })
@@ -152,7 +151,7 @@ export class QuestionGeneratorComponent {
     } else {
       this.crudService
         .httpPostAutomatedQuestions('text/questions', {
-          content: this.content,
+          content: this.text,
           type: 'multiple_choice',
           num: 4,
         })
